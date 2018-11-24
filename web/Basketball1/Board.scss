@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300');
+
+$debug: false;
+
+$page_top_padding: 30px;
+$page_side_padding: 30px;
+$team_title_padding: 30px;
+$team_title_fontsize: 5rem;
+$logo_size: 200px !default;
+
+$score_spread: 22vw;
+$background_color: #fff;
+$text_color: #000;
+
+@media (max-device-width: 800px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+body {
+  background-color: $background_color;
+  color: $text_color;
+  padding: 0;
+  border: 0;
+
+  user-select: none;
+}
+
+@if $debug == true {
+  div, tr, td {
+    border: solid 1px red;
+  }
+}
+
+.page_top_padding {
+  height: $page_top_padding;
+}
+
+.page_side_padding {
+  width: $page_side_padding;
+}
+
+.logo {
+  width: $logo_size;
+  height: $logo_size;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+  }
+}
+
+.team_title {
+  font-size: $team_title_fontsize;
+  transform: translateY(-20%);
+  font-family: 'Oswald', sans-serif;
+}
+
+#team_a_title {
+  @extend .team_title;
+  padding-left: $team_title_padding;
+}
+
+#team_b_title {
+  @extend .team_title;
+  text-align: right;
+  padding-right: $team_title_padding;
+}
+
+.score_placeholder {
+  height: 43vh;
+  text-align: center;
+  line-height: 0;
+
+  font-family: 'Oswald', sans-serif;
+  font-size: 20rem;
+  transform: translateY(-2rem);
+}
+
+.score_customval_placeholder {
+  height: 10vh;
+  text-align: center;
+  line-height: 0;
+
+  font-size: 3rem;
+  transform: translateY(1rem);
+  color: gray;
+}
+
+.footer_bar {
+  height: 20px;
+
+  #footer_connection_status {
+    width: 150px;
+  }
+}

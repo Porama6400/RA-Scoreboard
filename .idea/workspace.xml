@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f477762a-ce64-499e-a0db-7897016de2f7" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1683812649">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="15" />
+          <entry key="html" value="5" />
+          <entry key="js" value="9" />
+          <entry key="json" value="3" />
+          <entry key="map" value="7" />
+          <entry key="png" value="2" />
+          <entry key="rnc" value="1" />
+          <entry key="sass" value="1" />
+          <entry key="scss" value="5" />
+          <entry key="ts" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="15" />
+          <entry key="HTML" value="5" />
+          <entry key="Image" value="2" />
+          <entry key="JSON" value="1" />
+          <entry key="JavaScript" value="9" />
+          <entry key="RNG Compact" value="1" />
+          <entry key="SCSS" value="5" />
+          <entry key="Sass" value="1" />
+          <entry key="SourceMap" value="7" />
+          <entry key="TypeScript" value="4" />
+          <entry key="tsconfig" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="TypeScriptServerServiceImpl" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="128" />
+          <entry key="html" value="1460" />
+          <entry key="js" value="221" />
+          <entry key="scss" value="1865" />
+          <entry key="ts" value="876" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="128" />
+          <entry key="HTML" value="1460" />
+          <entry key="JavaScript" value="221" />
+          <entry key="SCSS" value="1865" />
+          <entry key="TypeScript" value="876" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="1227891961">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/Basketball1/Board.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Basketball1/Board.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="package.json" />
+        <option value="TypeScript File" />
+        <option value="tsconfig.json" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Sass File" />
+        <option value="SCSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>rem</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/server.ts" />
+        <option value="$PROJECT_DIR$/sv.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/server/sv.js" />
+        <option value="$PROJECT_DIR$/server/server.ts" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/server/ScoreboardServer.js" />
+        <option value="$PROJECT_DIR$/server/ScoreboardServer.ts" />
+        <option value="$PROJECT_DIR$/server/Server.ts" />
+        <option value="$PROJECT_DIR$/server/Client.ts" />
+        <option value="$PROJECT_DIR$/web/testGraph.html" />
+        <option value="$PROJECT_DIR$/server/Server.js" />
+        <option value="$PROJECT_DIR$/web/Basketball.html" />
+        <option value="$PROJECT_DIR$/web/style.css" />
+        <option value="$PROJECT_DIR$/web/Board.sass" />
+        <option value="$PROJECT_DIR$/web/Board.html" />
+        <option value="$PROJECT_DIR$/web/Board.scss" />
+        <option value="$PROJECT_DIR$/web/Board2.html" />
+        <option value="$PROJECT_DIR$/web/Minimal1/Board.scss" />
+        <option value="$PROJECT_DIR$/web/Basketball1/Board.html" />
+        <option value="$PROJECT_DIR$/web/Basketball1/Board.scss" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="Server Folder" pattern="file[RASW-Scoreboard]:server/*||file[RASW-Scoreboard]:server//*" />
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-80" />
+    <option name="y" value="-9" />
+    <option name="width" value="1926" />
+    <option name="height" value="1035" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ScoreboardServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoreboardServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoreboardServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoreboardServer" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoreboardServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoreboardServer" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoreboardServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoreboardServer" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="Basketball1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoreboardServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoreboardServer" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="Basketball1" type="462c0819:PsiDirectoryNode" />
+              <item name="Board.scss" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="ScoreboardServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScoreboardServer" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="Minimal1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ScoreboardServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="8.11.3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="ts.external.directory.path" value="C:\Users\Porama6400\AppData\Roaming\npm\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Porama6400\Documents\Project\Website\ScoreboardServer\web" />
+      <recent name="C:\Users\Porama6400\Documents\Project\Website\ScoreboardServer\web\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Porama6400\Documents\Project\Website\ScoreboardServer\web\Minimal1" />
+      <recent name="C:\Users\Porama6400\Documents\Project\Website\ScoreboardServer\server" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Server.ts" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="server/Server.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.Server.ts" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f477762a-ce64-499e-a0db-7897016de2f7" name="Default Changelist" comment="" />
+      <created>1542541757425</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542541757425</updated>
+      <workItem from="1542541758783" duration="7577000" />
+      <workItem from="1542585819068" duration="1825000" />
+      <workItem from="1542690256771" duration="4871000" />
+      <workItem from="1542781047219" duration="5504000" />
+      <workItem from="1542863335823" duration="1456000" />
+      <workItem from="1542942870383" duration="5645000" />
+      <workItem from="1543028077410" duration="3533000" />
+      <workItem from="1543035697947" duration="8219000" />
+      <workItem from="1543062666989" duration="4249000" />
+      <workItem from="1543076856709" duration="17000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="42896000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1723" height="935" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27480456" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49969932" visible="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50030065" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/server/ScoreboardServer.js" />
+        <option value="$PROJECT_DIR$/server/Client.js" />
+        <option value="$PROJECT_DIR$/server/Server.js" />
+        <option value="$PROJECT_DIR$/server/Server.js.map" />
+        <option value="$PROJECT_DIR$/server/Client.js.map" />
+        <option value="$PROJECT_DIR$/server/ScoreboardServer.js.map" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/server/Client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Client.js.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" lean-forward="true" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/ScoreboardServer.min.js" />
+    <entry file="file://$PROJECT_DIR$/server/Server.js.map">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="sourcemapFileViewerProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/ScoreboardServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="16" column="44" lean-forward="true" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/ScoreboardServer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/ScoreboardServer.js.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="92" selection-start-column="92" selection-end-column="92" />
+        </state>
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Client.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Server.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/Server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/testGraph.html" />
+    <entry file="file://$PROJECT_DIR$/web/Board.sass" />
+    <entry file="file://$PROJECT_DIR$/web/style.css" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_Chart.js_2.7.3_Chart.bundle.js" />
+    <entry file="file://$PROJECT_DIR$/web/Minimal1/Board.css.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="224" lean-forward="true" selection-start-column="224" selection-end-column="224" />
+        </state>
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Minimal1/Board.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/assets/ninetail_logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/assets/siren_logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Board2.html" />
+    <entry file="file://$PROJECT_DIR$/web/Minimal1/Board.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/tables.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="183" column="22" selection-start-line="183" selection-start-column="22" selection-end-line="183" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Minimal1/Board.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="769">
+          <caret line="76" column="11" lean-forward="true" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Basketball1/Board.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-575" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Basketball1/Board.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Basketball1/Board.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <last-edited>Server Folder</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+          <order>
+            <scope name="Server Folder" />
+          </order>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
