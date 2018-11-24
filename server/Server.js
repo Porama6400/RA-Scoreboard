@@ -3,16 +3,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Client_1 = require("./clienthandler/Client");
 var Server = /** @class */ (function () {
     function Server(sockio) {
-        // @ts-ignore
+        var _this = this;
+        this.list = [];
+        this.tick = function () {
+            _this.purge();
+        };
+        var thisclaz = this;
         sockio.on('connection', function (sio) {
             var client = new Client_1.Client(sio);
             console.log("New connection from " + client.ip());
-            Server.list.push(client);
+            thisclaz.list.push(client);
         });
     }
-    Server.prototype.tick = function () {
+    Server.prototype.purge = function () {
         var purge = [];
-        Server.list.forEach(function (client) {
+        var thisclz = this;
+        this.list.forEach(function (client) {
             if (!client.isAlive()) {
                 purge.push(client);
                 console.log("Client " + client.ip() + " disconnected!");
@@ -20,11 +26,10 @@ var Server = /** @class */ (function () {
             }
         });
         purge.forEach(function (client) {
-            var index = Server.list.indexOf(client);
-            Server.list.splice(index, 1);
+            var index = thisclz.list.indexOf(client);
+            thisclz.list.splice(index, 1);
         });
     };
-    Server.list = [];
     return Server;
 }());
 exports.Server = Server;
