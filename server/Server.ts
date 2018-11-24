@@ -3,35 +3,39 @@ import {Client} from "./clienthandler/Client";
 
 export class Server {
 
-    public static list: Array<Client> = [];
+    public list: Array<Client> = [];
 
     constructor(sockio: SocketIO) {
+        const thisclaz = this;
 
-        // @ts-ignore
         sockio.on('connection', function (sio) {
-            var client: Client = new Client(sio);
+            let client: Client = new Client(sio);
 
             console.log("New connection from " + client.ip());
-            Server.list.push(client);
+            thisclaz.list.push(client);
         });
     }
 
 
-    tick(): void {
-        var purge: Array<Client> = [];
+    public purge(): void {
+        let purge: Array<Client> = [];
+        const thisclz = this;
 
-        Server.list.forEach(function (client) {
+        this.list.forEach(function (client) {
             if (!client.isAlive()) {
                 purge.push(client);
-                console.log("Client " + client.sio.ip() + " disconnected!");
+                console.log("Client " + client.ip() + " disconnected!");
                 return;
             }
         });
 
         purge.forEach(function (client) {
-            var index: number = Server.list.indexOf(client);
-            Server.list.splice(index, 1);
+            let index: number = thisclz.list.indexOf(client);
+            thisclz.list.splice(index, 1);
         })
+    }
 
+    public tick = (): void => {
+        this.purge();
     }
 }
