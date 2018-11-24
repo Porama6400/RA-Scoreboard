@@ -1,0 +1,29 @@
+button {
+  
+    padding: 10vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+    display: inline-block;
+    
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #efc958;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px gray;
+
+    font-size: 5rem;
+}
+button:hover {background-color: #d8a60f}
+
+button:active {
+  background-color: gray;
+  box-shadow: 0 4px #a6206a;
+ 
+}
