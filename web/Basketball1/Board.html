@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Scoreboard</title>
     <link rel="stylesheet" href="Board.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="board.js"></script>
+
 </head>
+
 <body style="margin: 0;">
 
-<!-- ALIGN TO THE TOP -->
-<table style="width: 100vw">
-    <tr class="page_top_padding">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr style="height: 20vh">
-        <td class="page_side_padding"></td>
-        <td class="logo">
-            <img id="team-1-logo" src="#">
-        </td>
-        <td colspan="2" id="team_a_title">Vampire</td>
-        <td colspan="2" id="team_b_title">Ninetail</td>
-        <td class="logo">
-            <img id="team-2-logo" src="#">
-        </td>
-        <td class="page_side_padding"></td>
-    </tr>
-    <tr class="score_placeholder">
-        <td></td>
-        <td colspan="3" id="team_a_score">3</td>
-        <td colspan="3" id="team_b_score">3</td>
-        <td></td>
-    </tr>
-    <tr class="score_placeholder score_customval_placeholder">
-        <td></td>
-        <td colspan="3" id="team_a_customval">foul: 0</td>
-        <td colspan="3" id="team_b_customval">foul: inf</td>
-        <td></td>
-    </tr>
-</table>
+    <!-- ALIGN TO THE TOP -->
+    <table style="width: 100vw" border="1">
+        <tr class="page_top_padding">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="height: 20vh">
+            <td class="page_side_padding"></td>
+            <td class="logo">
+                <img id="team-1-logo" src="#">
+            </td>
+            <td colspan="2" id="team_a_title">Vampire</td>
+            <td colspan="2" id="team_b_title">Ninetail</td>
+            <td class="logo">
+                <img id="team-2-logo" src="#">
+            </td>
+            <td class="page_side_padding"></td>
+        </tr>
+        <tr class="score_placeholder">
+            <td></td>
+            <td colspan="3" id="team_a_score">3</td>
+            <td colspan="3" id="team_b_score">3</td>
+            <td></td>
+        </tr>
+        <tr class="score_placeholder score_customval_placeholder">
+            <td></td>
+            <td colspan="3" id="team_a_customval">foul: 0</td>
+            <td colspan="3" id="team_b_customval">foul: inf</td>
+            <td></td>
+        </tr>
+    </table>
 
-<!-- ALIGN TO THE BOTTOM -->
-<table class="footer_bar" style="width: 100%;position: fixed;bottom: 0">
-    <tr>
-        <td>
+    <!-- ALIGN TO THE BOTTOM -->
+    <table class="footer_bar" style="width: 100%;position: fixed;bottom: 0">
+        <tr>
+            <td>
 
-        </td>
-        <td id="footer_connection_status">
-            %Connection%
-        </td>
-    </tr>
-</table>
-
+            </td>
+            <td id="footer_connection_status">
+                %Connection%
+            </td>
+        </tr>
+    </table>
+    <script src="board.js"></script>
 </body>
+
 </html>
