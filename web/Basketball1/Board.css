@@ -12,6 +12,10 @@ body {
   user-select: none;
 }
 
+div, tr, td {
+  border: solid 1px red;
+}
+
 .page_top_padding {
   height: 30px;
 }
@@ -61,6 +65,10 @@ body {
   font-size: 3rem;
   transform: translateY(1rem);
   color: gray;
+}
+
+.tablecolfixer {
+  width: 15vw;
 }
 
 .footer_bar {

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:300');
 
-$debug: false;
+$debug: true;
 
 $page_top_padding: 30px;
 $page_side_padding: 30px;
@@ -87,6 +87,10 @@ body {
   font-size: 3rem;
   transform: translateY(1rem);
   color: gray;
+}
+
+.tablecolfixer {
+  width: 15vw;
 }
 
 .footer_bar {
