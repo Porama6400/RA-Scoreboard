@@ -59,4 +59,4 @@ $(document).ready(function () {
         $("#team-2-logo").attr("src", "../assets/werewolf_logo.png");
         $("#team_b_title").html("Werewolf");
     }
-})
+});
