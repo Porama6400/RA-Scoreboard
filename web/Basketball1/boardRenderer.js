@@ -1,4 +1,25 @@
-function setTeam(team1Name, team2Name) {
+var board = {
+    customVal: {
+        enable: true,
+        name: "foul"
+    },
+    teamA: {
+        color: "red",
+        score: 0,
+        customVal: 0
+    },
+
+    teamB: {
+        color: "blue",
+        score: 0,
+        customVal: 0
+
+    }
+
+};
+
+
+function updateTeam(team1Name, team2Name) {
     //var team1Name = "blue";//= recieve val from sockt io (from admin/in-game-admin-panel/main.js var team1Name)
     //var team2Name = "green";//= recieve val from sockt io (from admin/in-game-admin-panel/main.js var team2Name)
     if (team1Name === 'red') {
@@ -30,7 +51,21 @@ function setTeam(team1Name, team2Name) {
     }
 }
 
+function update() {
+    updateTeam(board.teamA.color, board.teamB.color);
+    $("#team_a_score").text(board.teamA.score);
+    $("#team_b_score").text(board.teamB.score);
+
+    if(!board.customVal.enable){
+        $("#team_a_customval").text("");
+        $("#team_b_customval").text("");
+    }
+    else{
+        $("#team_a_customval").text(board.customVal.name + ": " + board.teamA.customVal);
+        $("#team_b_customval").text(board.customVal.name + ": " + board.teamB.customVal);
+    }
+}
 
 $(document).ready(function () {
-    setTeam("red", "green");
+    update();
 });
