@@ -12,10 +12,6 @@ body {
   user-select: none;
 }
 
-div, tr, td {
-  border: solid 1px red;
-}
-
 .page_top_padding {
   height: 90px;
 }
@@ -24,24 +20,27 @@ div, tr, td {
   width: 30px;
 }
 
-.logo {
-  position: fixed;
+#team-1-logo {
+  position: absolute;
+  left: 0px;
+  top: 0px;
   z-index: -1;
+}
+
+#team-2-logo {
+  position: absolute;
+  left: 1090px;
+  top: 0px;
+  z-index: -2;
+}
+
+.logo {
   height: 1080px;
-}
-.logo #team1logo {
-  display: flex;
-  justify-content: left;
-}
-.logo #team2logo {
-  display: flex;
-  justify-content: right;
 }
 
 .old-logo {
   width: 200px;
   height: 200px;
-  background-color: red;
 }
 
 .team_title, #team_b_title, #team_a_title {
@@ -68,7 +67,7 @@ div, tr, td {
 }
 
 #timer {
-  transform: translate(-50%, -55vh);
+  transform: translate(-50%, -45vh);
   color: gray;
 }
 
@@ -83,7 +82,7 @@ div, tr, td {
   text-align: center;
   line-height: 0;
   font-family: "Oswald", sans-serif;
-  font-size: 20rem;
+  font-size: 25rem;
   transform: translateY(-2rem);
 }
 

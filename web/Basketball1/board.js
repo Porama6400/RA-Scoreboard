@@ -28,35 +28,35 @@ $(document).ready(function () {
 
     if (team1Name === 'red') {
         $("#team-1-logo").attr("src", "../assets/Red-left.png");
-        $("#team_a_title").html("Vampire");
+        
     }
     if (team1Name === 'green') {
         $("#team-1-logo").attr("src", "../assets/Green-left.png");
-        $("#team_a_title").html("Siren");
+        
     }
     if (team1Name === 'yellow') {
         $("#team-1-logo").attr("src", "../assets/Yellow-left.png");
-        $("#team_a_title").html("Ninetail");
+        
     }
     if (team1Name === 'blue') {
         $("#team-1-logo").attr("src", "../assets/Blue-left.png");
-        $("#team_a_title").html("Werewolf");
+        
     }
 
     if (team2Name === 'red') {
         $("#team-2-logo").attr("src", "../assets/Red-right.png");
-        $("#team_b_title").html("Vampire");
+       
     }
     if (team2Name === 'green') {
         $("#team-2-logo").attr("src", "../assets/Green-right.png");
-        $("#team_b_title").html("Siren");
+        
     }
     if (team2Name === 'yellow') {
         $("#team-2-logo").attr("src", "../assets/Yellow-right.png");
-        $("#team_b_title").html("Ninetail");
+       
     }
     if (team2Name === 'blue') {
         $("#team-2-logo").attr("src", "../assets/Blue-right.png");
-        $("#team_b_title").html("Werewolf");
+      
     }
 });

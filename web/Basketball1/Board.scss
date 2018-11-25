@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:300');
 
-$debug: true;
+$debug: false;
 
 $page_top_padding: 90px;
 $page_side_padding: 30px;
@@ -35,6 +35,9 @@ body {
   div, tr, td {
     border: solid 1px red;
   }
+  .old-logo {
+    background-color: red;
+  }
 }
 
 .page_top_padding {
@@ -45,29 +48,28 @@ body {
   width: $page_side_padding;
 }
 
-.logo {
-  position: fixed;
+#team-1-logo {
+  position: absolute;
+  left: 0px;
+  top: 0px;
   z-index: -1;
+}
 
+#team-2-logo {
+  position: absolute;
+  left: 1090px;
+  top: 0px;
+  z-index: -2;
+}
+
+.logo {
   height: 1080px;
-
-  #team1logo {
-    display: flex;
-    justify-content: left;
-
-  }
-  #team2logo {
-    display: flex;
-    justify-content: right;
-
-  }
-  
 }
 
 .old-logo {
   width: $logo_size;
   height: $logo_size;
- background-color: red;
+ 
 }
 
 .team_title {
@@ -96,7 +98,7 @@ body {
 }
 
 #timer {
-  transform: translate(-50%, -55vh);
+  transform: translate(-50%, -45vh);
   color: gray;
 }
 
@@ -116,7 +118,7 @@ body {
   line-height: 0;
 
   font-family: 'Oswald', sans-serif;
-  font-size: 20rem;
+  font-size: 25rem;
   transform: translateY(-2rem);
 }
 
