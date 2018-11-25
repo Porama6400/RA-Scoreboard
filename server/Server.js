@@ -7,7 +7,7 @@ var Server = /** @class */ (function () {
         var _this = this;
         this.clientHandlers = [];
         this.onConnection = function (conn) {
-            var client = new ClientHandler_1.ClientHandler(conn);
+            var client = new ClientHandler_1.ClientHandler(_this, conn);
             console.log("New connection from " + client.getIP());
             _this.clientHandlers.push(client);
             client.sio.on('management', function (data) {
@@ -42,6 +42,17 @@ var Server = /** @class */ (function () {
         setInterval(this.tick, 1000);
         console.log("Server listening on port " + port);
     }
+    ;
+    Server.prototype.getBoardClient = function (key) {
+        var ret = null;
+        this.clientHandlers.forEach(function (client) {
+            if (client.type == ClientHandler_1.ClientType.SCOREBOARD) {
+                if (client.boardinfo.accessKey === key)
+                    ret = client;
+            }
+        });
+        return ret;
+    };
     return Server;
 }());
 exports.Server = Server;

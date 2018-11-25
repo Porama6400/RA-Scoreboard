@@ -16,7 +16,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Packet = /** @class */ (function () {
     function Packet() {
     }
-    Packet.REGISTER = 1;
+    Packet.Channels = {
+        Registry: "sbr",
+        Score: "sbs"
+    };
     return Packet;
 }());
 exports.Packet = Packet;
@@ -25,6 +28,11 @@ var PacketScoreboardRegistry = /** @class */ (function (_super) {
     function PacketScoreboardRegistry() {
         return _super.call(this) || this;
     }
+    PacketScoreboardRegistry.Type = {
+        REGISTER: 1,
+        ACKNOWLEDGE: 2,
+        USE: 10 // SPECIFIED WHAT SCOREBOARD TO REMOTE TO
+    };
     return PacketScoreboardRegistry;
 }(Packet));
 exports.PacketScoreboardRegistry = PacketScoreboardRegistry;

@@ -1,5 +1,5 @@
 import * as SocketIO from "socket.io";
-import {ClientHandler} from "./ClientHandler";
+import {ClientHandler, ClientType} from "./ClientHandler";
 
 export class Server {
 
@@ -21,10 +21,10 @@ export class Server {
         setInterval(this.tick, 1000);
 
         console.log("Server listening on port " + port);
-    }
+    };
 
     private onConnection = (conn: SocketIO) => {
-        let client: ClientHandler = new ClientHandler(conn);
+        let client: ClientHandler = new ClientHandler(this, conn);
         console.log("New connection from " + client.getIP());
         this.clientHandlers.push(client);
 
@@ -50,9 +50,19 @@ export class Server {
             let index: number = thisserver.clientHandlers.indexOf(client);
             thisserver.clientHandlers.splice(index, 1);
         })
-    }
+    };
 
     public tick = (): void => {
         this.purgeConnections();
+    };
+
+    public getBoardClient(key: string) {
+        var ret: any = null;
+        this.clientHandlers.forEach((client) => {
+            if (client.type == ClientType.SCOREBOARD) {
+                if (client.boardinfo.accessKey === key) ret = client;
+            }
+        });
+        return ret;
     }
 }
