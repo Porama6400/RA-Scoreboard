@@ -13,15 +13,19 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Board_1 = require("./Board");
-var BoardHandler = /** @class */ (function (_super) {
-    __extends(BoardHandler, _super);
-    function BoardHandler(c_owner) {
-        var _this = _super.call(this) || this;
-        _this.owner = c_owner;
-        return _this;
+var Packet = /** @class */ (function () {
+    function Packet() {
     }
-    return BoardHandler;
-}(Board_1.Board));
-exports.BoardHandler = BoardHandler;
-//# sourceMappingURL=BoardHandler.js.map
+    Packet.REGISTER = 1;
+    return Packet;
+}());
+exports.Packet = Packet;
+var PacketScoreboardRegistry = /** @class */ (function (_super) {
+    __extends(PacketScoreboardRegistry, _super);
+    function PacketScoreboardRegistry() {
+        return _super.call(this) || this;
+    }
+    return PacketScoreboardRegistry;
+}(Packet));
+exports.PacketScoreboardRegistry = PacketScoreboardRegistry;
+//# sourceMappingURL=Packets.js.map

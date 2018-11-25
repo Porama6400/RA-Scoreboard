@@ -1,11 +1,9 @@
 import * as SocketIO from "socket.io";
 import {ClientHandler} from "./ClientHandler";
-import {BoardHandler} from "./BoardHandler";
 
 export class Server {
 
     public clientHandlers: Array<ClientHandler> = [];
-    public boards: Array<BoardHandler> = [];
 
     public sockio: SocketIO;
 
@@ -18,14 +16,6 @@ export class Server {
 
         //Handle connection
         this.sockio.on('connection', this.onConnection);
-        /*
-        this.sockio.on('connection', function (sio) {
-            let client: ClientHandler = new ClientHandler(sio);
-
-            console.log("New connection from " + client.getIP());
-            thisserver.clientHandlers.push(client);
-        });
-        */
 
         //Initialize server ticking
         setInterval(this.tick, 1000);

@@ -6,7 +6,6 @@ var Server = /** @class */ (function () {
     function Server(port) {
         var _this = this;
         this.clientHandlers = [];
-        this.boards = [];
         this.onConnection = function (conn) {
             var client = new ClientHandler_1.ClientHandler(conn);
             console.log("New connection from " + client.getIP());
@@ -39,14 +38,6 @@ var Server = /** @class */ (function () {
         this.sockio = new SocketIO(port);
         //Handle connection
         this.sockio.on('connection', this.onConnection);
-        /*
-        this.sockio.on('connection', function (sio) {
-            let client: ClientHandler = new ClientHandler(sio);
-
-            console.log("New connection from " + client.getIP());
-            thisserver.clientHandlers.push(client);
-        });
-        */
         //Initialize server ticking
         setInterval(this.tick, 1000);
         console.log("Server listening on port " + port);
