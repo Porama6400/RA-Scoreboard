@@ -13,6 +13,8 @@ var team2foul = 0;
 var team1set = 0;
 var team2set = 0;
 
+var timer = 10.00;
+
 
 
 function generate() {
@@ -38,16 +40,21 @@ function generate() {
         $('.basketball-panel').show();
 
 
-        document.getElementById("team1-foul-score").innerHTML = team1foul;
-        document.getElementById("team2-foul-score").innerHTML = team2foul;
+        $("#team1-foul-score").html(team1foul);
+        $("#team2-foul-score").html(team2foul);
     }
     if (sporttype.value === 'Volleyball') {
         $('#volleyball-set-won').show();
         $('#volleyball-set').show();
+        $('.timer').hide();
 
-        document.getElementById("team1-set-score").innerHTML = team1foul;
-        document.getElementById("team2-set-score").innerHTML = team2foul;
+        $("#team1-set-score").html(team1foul);
+        $("#team2-set-score").html(team2foul);
+    }
 
+    if (sporttype.value === 'Chairball') {
+        $('#normal-panel').hide();
+        $('.chairball-panel').show();
     }
 
     if (team1.value === 'f000ff') { //red
@@ -169,7 +176,7 @@ function coloner(input) {
         value = value.split(':').join('');
 
     if (value.length > 3) {
-      value = value.substring(0, value.length - 2) + ':' + value.substring(value.length - 2, value.length);
+        value = value.substring(0, value.length - 2) + ':' + value.substring(value.length - 2, value.length);
     }
 
     input.value = value;
