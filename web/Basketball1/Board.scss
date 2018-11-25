@@ -2,10 +2,11 @@
 
 $debug: false;
 
-$page_top_padding: 30px;
+$page_top_padding: 80px;
 $page_side_padding: 30px;
 $team_title_padding: 30px;
 $team_title_fontsize: 5rem;
+$timer-font-size: 8.5rem;
 $logo_size: 200px !default;
 
 $score_spread: 22vw;
@@ -76,7 +77,8 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  font-size: 7em;
+  font-family: 'Oswald', sans-serif;
+  font-size: $timer-font-size;
 }
 
 #timer {
@@ -85,6 +87,7 @@ body {
 
 #short-timer {
   transform: translate(-50%, 20vh);
+  font-size: 6rem;
 }
 
 
@@ -106,7 +109,8 @@ body {
   text-align: center;
   line-height: 0;
 
-  font-size: 4rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 5rem;
   transform: translateY(1rem);
   color: gray;
 }

@@ -13,7 +13,7 @@ body {
 }
 
 .page_top_padding {
-  height: 30px;
+  height: 80px;
 }
 
 .page_side_padding {
@@ -49,7 +49,8 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  font-size: 7em;
+  font-family: "Oswald", sans-serif;
+  font-size: 8.5rem;
 }
 
 #timer {
@@ -58,6 +59,7 @@ body {
 
 #short-timer {
   transform: translate(-50%, 20vh);
+  font-size: 6rem;
 }
 
 .score_placeholder {
@@ -73,7 +75,8 @@ body {
   height: 10vh;
   text-align: center;
   line-height: 0;
-  font-size: 4rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 5rem;
   transform: translateY(1rem);
   color: gray;
 }
