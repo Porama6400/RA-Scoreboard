@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:300');
 
-$debug: false;
+$debug: true;
 
-$page_top_padding: 90px;
+$page_top_padding: 30px;
 $page_side_padding: 30px;
 $team_title_padding: 30px;
 $team_title_fontsize: 5rem;
-$timer-font-size: 8.5rem;
 $logo_size: 200px !default;
 
 $score_spread: 22vw;
@@ -17,10 +16,7 @@ $text_color: #000;
   html {
     font-size: 12px;
   }
-
 }
-
-
 
 body {
   background-color: $background_color;
@@ -35,9 +31,6 @@ body {
   div, tr, td {
     border: solid 1px red;
   }
-  .old-logo {
-    background-color: red;
-  }
 }
 
 .page_top_padding {
@@ -48,30 +41,6 @@ body {
   width: $page_side_padding;
 }
 
-<<<<<<< HEAD
-#team-1-logo {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1;
-}
-
-#team-2-logo {
-  position: absolute;
-  left: 1090px;
-  top: 0px;
-  z-index: -2;
-}
-
-.logo {
-  height: 1080px;
-}
-
-.old-logo {
-  width: $logo_size;
-  height: $logo_size;
- 
-=======
 .logo {
   width: $logo_size;
   height: $logo_size;
@@ -81,7 +50,6 @@ body {
     max-height: 100%;
     border-radius: 50%;
   }
->>>>>>> parent of ff2f7db... latest admin panel
 }
 
 .team_title {
@@ -101,36 +69,13 @@ body {
   padding-right: $team_title_padding;
 }
 
-.timer {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  font-family: 'Oswald', sans-serif;
-  font-size: $timer-font-size;
-}
-
-#timer {
-  transform: translate(-50%, -45vh);
-  color: gray;
-}
-
-#short-timer {
-  transform: translate(-50%, 35vh);
-  font-size: 5rem;
-  color: darkgray;
-}
-
-
-
-
-
 .score_placeholder {
   height: 43vh;
   text-align: center;
   line-height: 0;
 
   font-family: 'Oswald', sans-serif;
-  font-size: 25rem;
+  font-size: 20rem;
   transform: translateY(-2rem);
 }
 
@@ -139,8 +84,7 @@ body {
   text-align: center;
   line-height: 0;
 
-  font-family: 'Oswald', sans-serif;
-  font-size: 5rem;
+  font-size: 3rem;
   transform: translateY(1rem);
   color: gray;
 }
