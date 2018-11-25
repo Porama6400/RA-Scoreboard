@@ -1,37 +1,44 @@
 import * as SocketIO from "socket.io";
-import {Client} from "./clienthandler/Client";
+import {ClientHandler} from "./ClientHandler";
 
 export class Server {
 
-    public list: Array<Client> = [];
+    public list: Array<ClientHandler> = [];
 
-    constructor(sockio: SocketIO) {
-        const thisclaz = this;
+    public sockio: SocketIO;
 
-        sockio.on('connection', function (sio) {
-            let client: Client = new Client(sio);
+    constructor(port: number) {
+        const thisserver = this;
+        console.log("Server initializing...");
 
-            console.log("New connection from " + client.ip());
-            thisclaz.list.push(client);
+        this.sockio = new SocketIO(port);
+
+        this.sockio.on('connection', function (sio) {
+            let client: ClientHandler = new ClientHandler(sio);
+
+            console.log("New connection from " + client.getIP());
+            thisserver.list.push(client);
         });
+
+        console.log("Server listening on port " + port);
     }
 
 
     public purge(): void {
-        let purge: Array<Client> = [];
-        const thisclz = this;
+        let purge: Array<ClientHandler> = [];
+        const thisserver = this;
 
         this.list.forEach(function (client) {
             if (!client.isAlive()) {
                 purge.push(client);
-                console.log("Client " + client.ip() + " disconnected!");
+                console.log("ClientHandler " + client.getIP() + " disconnected!");
                 return;
             }
         });
 
         purge.forEach(function (client) {
-            let index: number = thisclz.list.indexOf(client);
-            thisclz.list.splice(index, 1);
+            let index: number = thisserver.list.indexOf(client);
+            thisserver.list.splice(index, 1);
         })
     }
 

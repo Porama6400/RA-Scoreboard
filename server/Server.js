@@ -1,33 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Client_1 = require("./clienthandler/Client");
+var SocketIO = require("socket.io");
+var ClientHandler_1 = require("./ClientHandler");
 var Server = /** @class */ (function () {
-    function Server(sockio) {
+    function Server(port) {
         var _this = this;
         this.list = [];
         this.tick = function () {
             _this.purge();
         };
-        var thisclaz = this;
-        sockio.on('connection', function (sio) {
-            var client = new Client_1.Client(sio);
-            console.log("New connection from " + client.ip());
-            thisclaz.list.push(client);
+        var thisserver = this;
+        console.log("Server initializing...");
+        this.sockio = new SocketIO(port);
+        this.sockio.on('connection', function (sio) {
+            var client = new ClientHandler_1.ClientHandler(sio);
+            console.log("New connection from " + client.getIP());
+            thisserver.list.push(client);
         });
+        console.log("Server listening on port " + port);
     }
     Server.prototype.purge = function () {
         var purge = [];
-        var thisclz = this;
+        var thisserver = this;
         this.list.forEach(function (client) {
             if (!client.isAlive()) {
                 purge.push(client);
-                console.log("Client " + client.ip() + " disconnected!");
+                console.log("ClientHandler " + client.getIP() + " disconnected!");
                 return;
             }
         });
         purge.forEach(function (client) {
-            var index = thisclz.list.indexOf(client);
-            thisclz.list.splice(index, 1);
+            var index = thisserver.list.indexOf(client);
+            thisserver.list.splice(index, 1);
         });
     };
     return Server;

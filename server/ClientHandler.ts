@@ -1,4 +1,4 @@
-export class Client {
+export class ClientHandler {
     sio: any; //Socket.io connection
 
     constructor(sio: any) {
@@ -9,7 +9,7 @@ export class Client {
         return this.sio.connected;
     }
 
-    ip(): any{
+    getIP(): any {
         return this.sio.handshake.address;
     }
 }
