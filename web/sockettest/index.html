@@ -6,8 +6,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 </head>
 <body>
-    <script>
-        var socket = io("ws://localhost:443");
-    </script>
+<script>
+    var socket = io("ws://localhost:443");
+
+    socket.on("sbr", (a) => console.log(a));
+    socket.on("sbs", (a) => console.log(a));
+</script>
 </body>
 </html>
