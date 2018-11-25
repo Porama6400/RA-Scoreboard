@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:300');
 
-$debug: true;
+$debug: false;
 
 $page_top_padding: 30px;
 $page_side_padding: 30px;
@@ -16,7 +16,10 @@ $text_color: #000;
   html {
     font-size: 12px;
   }
+
 }
+
+
 
 body {
   background-color: $background_color;
@@ -69,6 +72,25 @@ body {
   padding-right: $team_title_padding;
 }
 
+.timer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 7em;
+}
+
+#timer {
+  transform: translate(-50%, -45vh);
+}
+
+#short-timer {
+  transform: translate(-50%, 20vh);
+}
+
+
+
+
+
 .score_placeholder {
   height: 43vh;
   text-align: center;
@@ -84,7 +106,7 @@ body {
   text-align: center;
   line-height: 0;
 
-  font-size: 3rem;
+  font-size: 4rem;
   transform: translateY(1rem);
   color: gray;
 }
