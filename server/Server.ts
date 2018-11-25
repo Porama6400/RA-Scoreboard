@@ -1,9 +1,11 @@
 import * as SocketIO from "socket.io";
 import {ClientHandler} from "./ClientHandler";
+import {Board} from "./Board";
 
 export class Server {
 
-    public list: Array<ClientHandler> = [];
+    public clientHandlers: Array<ClientHandler> = [];
+    public boards: Array<Board> = [];
 
     public sockio: SocketIO;
 
@@ -11,38 +13,42 @@ export class Server {
         const thisserver = this;
         console.log("Server initializing...");
 
+        //Initialize Socket.io
         this.sockio = new SocketIO(port);
 
+        //Handle connection
         this.sockio.on('connection', function (sio) {
             let client: ClientHandler = new ClientHandler(sio);
 
             console.log("New connection from " + client.getIP());
-            thisserver.list.push(client);
+            thisserver.clientHandlers.push(client);
         });
+
+        //Initialize server ticking
+        setInterval(this.tick, 1000);
 
         console.log("Server listening on port " + port);
     }
 
-
-    public purge(): void {
+    public purgeConnections = (): void => {
         let purge: Array<ClientHandler> = [];
         const thisserver = this;
 
-        this.list.forEach(function (client) {
+        this.clientHandlers.forEach(function (client) {
             if (!client.isAlive()) {
                 purge.push(client);
-                console.log("ClientHandler " + client.getIP() + " disconnected!");
+                console.log("Client " + client.getIP() + " disconnected!");
                 return;
             }
         });
 
         purge.forEach(function (client) {
-            let index: number = thisserver.list.indexOf(client);
-            thisserver.list.splice(index, 1);
+            let index: number = thisserver.clientHandlers.indexOf(client);
+            thisserver.clientHandlers.splice(index, 1);
         })
     }
 
     public tick = (): void => {
-        this.purge();
+        this.purgeConnections();
     }
 }
