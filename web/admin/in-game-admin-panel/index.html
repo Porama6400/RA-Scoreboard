@@ -25,6 +25,7 @@
                             <option value="Basketball">Basketball</option>
                             <option value="Handball">Handball</option>
                             <option value="Volleyball">Volleyball</option>
+                            <option value="Chairball">Chairball</option>
                         </select>
                     </td>
                 </tr>
@@ -61,13 +62,9 @@
                         <label>Timer Settings</label>
                     </td>
                     <td>
-
                         <select id="timer_full">
-                            <option value="select color" selected disabled>countdown</option>
-                            <option value="5.00">5</option>
-                            <option value="10.00">10</option>
-                            <option value="15.00">15</option>
-                            <option value="20.00">20</option>
+                            <option value="10.00" selected>10.00</option>
+                            <option value="No timer">No timer</option>
                         </select>
                     </td>
                 </tr>
@@ -129,6 +126,14 @@
                     <button class="set" onclick="add('team2', 3)">+3</button>
                 </td>
             </tr>
+            <tr class="chairball-panel" hidden>
+                <td align='center' colspan="3">
+                    <button onclick="add('team1', 2)">+2</button>
+                </td>
+                <td align='center' colspan="3">
+                    <button onclick="add('team2', 2)">+2</button>
+                </td>
+            </tr>
             <tr>
                 <td align='center' colspan="3">
                     <button id="team1-sub" onclick="add('team1', -1)">-1</button>
@@ -137,13 +142,13 @@
                     <button id="team2-sub" onclick="add('team2', -1)">-1</button>
                 </td>
             </tr>
-            <tr>
+            <tr class="timer">
                 <td colspan="6" align='center'>
                     <span id="timer-count">Timer</span>
                 </td>
 
             </tr>
-            <tr>
+            <tr class="timer">
                 <td align='center' colspan="2">
                     <button id="start-timer">Start</button>
                 </td>
@@ -155,7 +160,7 @@
                     <button id="reset-timer">Reset</button>
                 </td>
             </tr>
-            <tr id="bassketball-foul-score" hidden>
+            <tr id="basketball-foul-score" hidden>
                 <td align='center' colspan="3">
                     <span id="team1-foul-score"></span>
                 </td>
@@ -195,10 +200,7 @@
 
         </table>
     </div>
-    <div id="panel_previous" hidden>
-        <!--wait for database val-->
 
-    </div>
 
     <script src="main.js"></script>
 </body>

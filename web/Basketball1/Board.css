@@ -12,6 +12,10 @@ body {
   user-select: none;
 }
 
+div, tr, td {
+  border: solid 1px red;
+}
+
 .page_top_padding {
   height: 90px;
 }
@@ -21,13 +25,23 @@ body {
 }
 
 .logo {
+  position: fixed;
+  z-index: -1;
+  height: 1080px;
+}
+.logo #team1logo {
+  display: flex;
+  justify-content: left;
+}
+.logo #team2logo {
+  display: flex;
+  justify-content: right;
+}
+
+.old-logo {
   width: 200px;
   height: 200px;
-}
-.logo img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 50%;
+  background-color: red;
 }
 
 .team_title, #team_b_title, #team_a_title {

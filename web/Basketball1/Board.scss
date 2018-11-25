@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:300');
 
-$debug: false;
+$debug: true;
 
 $page_top_padding: 90px;
 $page_side_padding: 30px;
@@ -46,14 +46,28 @@ body {
 }
 
 .logo {
+  position: fixed;
+  z-index: -1;
+
+  height: 1080px;
+
+  #team1logo {
+    display: flex;
+    justify-content: left;
+
+  }
+  #team2logo {
+    display: flex;
+    justify-content: right;
+
+  }
+  
+}
+
+.old-logo {
   width: $logo_size;
   height: $logo_size;
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 50%;
-  }
+ background-color: red;
 }
 
 .team_title {
