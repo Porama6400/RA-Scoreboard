@@ -13,7 +13,7 @@ body {
 }
 
 .page_top_padding {
-  height: 80px;
+  height: 90px;
 }
 
 .page_side_padding {
@@ -54,12 +54,14 @@ body {
 }
 
 #timer {
-  transform: translate(-50%, -45vh);
+  transform: translate(-50%, -55vh);
+  color: gray;
 }
 
 #short-timer {
-  transform: translate(-50%, 20vh);
-  font-size: 6rem;
+  transform: translate(-50%, 35vh);
+  font-size: 5rem;
+  color: darkgray;
 }
 
 .score_placeholder {
