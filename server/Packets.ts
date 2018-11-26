@@ -19,3 +19,18 @@ export class PacketScoreboardRegistry extends Packet {
         super();
     }
 }
+
+export class PacketScoreboardScore extends Packet {
+    public req: number;
+    public payload: any;
+
+    public static Type = {
+        REQUEST: 1,
+        RESPONSE: 2,
+        UPDATE: 10
+    };
+
+    constructor() {
+        super();
+    }
+}

@@ -6,12 +6,7 @@ var accessKey = undefined;
 socket.on("sbr", (a) => console.log(a));
 socket.on("sbs", (a) => console.log(a));
 
-socket.on('connect', () => {
-    console.log('Connected to ' + server_addr);
-
-    if (accessKey !== undefined) console.log("Connection restored! Resuming with previous key (" + accessKey + ")");
-    socket.emit("sbr", {req: 1, payload: accessKey}); //Tell server "I am a scoreboard!"
-});
+socket.
 
 //Scoreboard Registry (Management channel)
 socket.on("sbr", (data) => {

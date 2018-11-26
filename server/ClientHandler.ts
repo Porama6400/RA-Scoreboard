@@ -1,4 +1,4 @@
-import {Packet, PacketScoreboardRegistry} from "./Packets";
+import {Packet, PacketScoreboardScore, PacketScoreboardRegistry} from "./Packets";
 import {Utils} from "./Utils";
 import {BoardInfo} from "./BoardInfo";
 import {Server} from "./Server";
@@ -46,7 +46,7 @@ export class ClientHandler {
         });
 
         const thisclient: ClientHandler = this;
-        this.sio.on(Packet.Channels.Score, function (msg) {
+        this.sio.on(Packet.Channels.Score, function (msg: PacketScoreboardScore) {
             if (thisclient.boardinfo.accessKey == null) return;
 
             //FORWARD MESSAGES

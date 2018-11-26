@@ -36,4 +36,17 @@ var PacketScoreboardRegistry = /** @class */ (function (_super) {
     return PacketScoreboardRegistry;
 }(Packet));
 exports.PacketScoreboardRegistry = PacketScoreboardRegistry;
+var PacketScoreboardScore = /** @class */ (function (_super) {
+    __extends(PacketScoreboardScore, _super);
+    function PacketScoreboardScore() {
+        return _super.call(this) || this;
+    }
+    PacketScoreboardScore.Type = {
+        REQUEST: 1,
+        RESPONSE: 2,
+        UPDATE: 10
+    };
+    return PacketScoreboardScore;
+}(Packet));
+exports.PacketScoreboardScore = PacketScoreboardScore;
 //# sourceMappingURL=Packets.js.map
