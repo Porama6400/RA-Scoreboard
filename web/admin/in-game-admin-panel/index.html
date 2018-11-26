@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin Panel | RA Sport Week 2018</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script src="admincommcore.js"></script>
@@ -14,203 +14,206 @@
 </head>
 
 <body>
-<div id="panel_config" class="panel-group" style="max-width: 100%">
-    <form>
+    <div id="panel_config" class="panel-group" style="max-width: 100%">
+        <form>
+            <table align='center'>
+                <tr>
+                    <td>
+                        <label>Sport Type</label>
+                    </td>
+                    <td>
+                        <select id="edit-sport-type">
+                            <option value="sport type" selected disabled>sport type</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Handball">Handball</option>
+                            <option value="Volleyball">Volleyball</option>
+                            <option value="Chairball">Chairball</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Team 1 Color</label>
+                    </td>
+                    <td>
+                        <select id='edit-team1-data'>
+                            <option value="select color" selected disabled>select color</option>
+                            <option value="f000ff">red</option>
+                            <option value="ff000f">green</option>
+                            <option value="fff000">yellow</option>
+                            <option value="f0f00f">blue</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Team 2 Color</label>
+                    </td>
+                    <td>
+                        <select id="edit-team2-data">
+                            <option value="select color" selected disabled>select color</option>
+                            <option value="f000ff">red</option>
+                            <option value="ff000f">green</option>
+                            <option value="fff000">yellow</option>
+                            <option value="f0f00f">blue</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Timer Settings</label>
+                    </td>
+                    <td>
+                        <select id="timer_full">
+                            <option value="10.00" selected>10.00</option>
+                            <option value="No timer">No timer</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Key: </label>
+                    </td>
+                    <td>
+                        <input type="text" id="register-key">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="button" name="add" value="Add" onclick="generate()">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+    <div id="panel_edit" hidden>
         <table align='center'>
             <tr>
-                <td>
-                    <label>Sport Type</label>
-                </td>
-                <td>
-                    <select id="edit-sport-type">
-                        <option value="sport type" selected disabled>sport type</option>
-                        <option value="Basketball">Basketball</option>
-                        <option value="Handball">Handball</option>
-                        <option value="Volleyball">Volleyball</option>
-                        <option value="Chairball">Chairball</option>
-                    </select>
+                <td colspan='6' align='center'>
+                    <span id="sport-type-span"></span> Editor
                 </td>
             </tr>
             <tr>
-                <td>
-                    <label>Team 1 Color</label>
+                <td align='center' colspan="3">
+                    <span id="team1-span"></span>
                 </td>
-                <td>
-                    <select id='edit-team1-data'>
-                        <option value="select color" selected disabled>select color</option>
-                        <option value="f000ff">red</option>
-                        <option value="ff000f">green</option>
-                        <option value="fff000">yellow</option>
-                        <option value="f0f00f">blue</option>
-                    </select>
+                <td align='center' colspan="3">
+                    <span id="team2-span"></span>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <label>Team 2 Color</label>
+                <td align='center' colspan="3">
+                    <span id="team1-score"></span>
                 </td>
-                <td>
-                    <select id="edit-team2-data">
-                        <option value="select color" selected disabled>select color</option>
-                        <option value="f000ff">red</option>
-                        <option value="ff000f">green</option>
-                        <option value="fff000">yellow</option>
-                        <option value="f0f00f">blue</option>
-                    </select>
+                <td align='center' colspan="3">
+                    <span id="team2-score"></span>
+                </td>
+            </tr>
+            <tr id="normal-panel">
+                <td align='center' colspan="3">
+                    <button id="team1-add" onclick="add('a','score', 1)">+1</button>
+                </td>
+                <td align='center' colspan="3">
+                    <button id="team2-add" onclick="add('b','score', 1)">+1</button>
+                </td>
+            </tr>
+            <tr class="basketball-panel" hidden>
+                <td align='center' colspan="3">
+                    <button onclick="add('a','score', 2)">+2</button>
+                </td>
+                <td align='center' colspan="3">
+                    <button onclick="add('b','score', 2)">+2</button>
+                </td>
+            </tr>
+            <tr class="basketball-panel" hidden>
+                <td align='center' colspan="3">
+                    <button class="set" onclick="add('a','score', 1)">+1</button>
+                    <button class="set" onclick="add('a','score', 3)">+3</button>
+                </td>
+                <td align='center' colspan="3">
+                    <button class="set" onclick="add('b','score', 1)">+1</button>
+                    <button class="set" onclick="add('b','score', 3)">+3</button>
+                </td>
+            </tr>
+            <tr class="chairball-panel" hidden>
+                <td align='center' colspan="3">
+                    <button onclick="add('a','score', 2)">+2</button>
+                </td>
+                <td align='center' colspan="3">
+                    <button onclick="add('b','score', 2)">+2</button>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <label>Timer Settings</label>
+                <td align='center' colspan="3">
+                    <button id="team1-sub" onclick="add('a','score', -1)">-1</button>
                 </td>
-                <td>
-                    <select id="timer_full">
-                        <option value="10.00" selected>10.00</option>
-                        <option value="No timer">No timer</option>
-                    </select>
+                <td align='center' colspan="3">
+                    <button id="team2-sub" onclick="add('b','score',-1)">-1</button>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <input type="text" id="register-key">
+            <tr class="timer">
+                <td colspan="6" align='center'>
+                    <span id="timer-count">Timer</span>
+                </td>
+
+            </tr>
+            <tr class="timer">
+                <td align='center' colspan="2">
+                    <button id="start-timer">Start</button>
+                </td>
+                <td align='center' colspan="2">
+                    <button id="stop-timer">Stop</button>
+
+                </td>
+                <td align='center' colspan="2">
+                    <button id="break-timer">Break</button>
+                </td>
+            </tr>
+            <tr id="basketball-foul-score" hidden>
+                <td align='center' colspan="3">
+                    <span id="team1-foul-score"></span>
+                </td>
+                <td align='center' colspan="3">
+                    <span id="team2-foul-score"></span>
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <input type="button" name="add" value="Add" onclick="generate()">
+            <tr id="basketball-foul" hidden>
+                <td align='center' colspan="3">
+                    <button class="set" id="team1-foul" onclick="add('a','cval', 1)">Foul+</button>
+                    <button class="set" id="team1-sub-foul" onclick="add('a','cval' -1)">Foul-</button>
+                </td>
+                <td align='center' colspan="3">
+                    <button class="set" id="team2-foul" onclick="add('b','cval', 1)">Foul+</button>
+                    <button class="set" id="team2-sub-foul" onclick="add('b','cval', -1)">Foul-</button>
                 </td>
             </tr>
+            <tr id="volleyball-set-won" hidden>
+                <td align='center' colspan="3">
+                    <span id="team1-set-score"></span>
+                </td>
+                <td align='center' colspan="3">
+                    <span id="team2-set-score"></span>
+                </td>
+            </tr>
+            <tr id="volleyball-set" hidden>
+                <td align='center' colspan="3">
+                    <button class="set" id="team1-set" onclick="add('a','cval', 1)">Set+</button>
+                    <button class="set" id="team1-sub-set" onclick="add('a','cval',-1)">Set-</button>
+                </td>
+                <td align='center' colspan="3">
+                    <button class="set" id="team2-set" onclick="add('b','cval', 1)">Set+</button>
+                    <button class="set" id="team2-sub-set" onclick="add('b','cval',-1)">Set-</button>
+                </td>
+            </tr>
+
         </table>
-    </form>
-
-</div>
-<div id="panel_edit" hidden>
-    <table align='center'>
-        <tr>
-            <td colspan='6' align='center'>
-                <span id="sport-type-span"></span> Editor
-            </td>
-        </tr>
-        <tr>
-            <td align='center' colspan="3">
-                <span id="team1-span"></span>
-            </td>
-            <td align='center' colspan="3">
-                <span id="team2-span"></span>
-            </td>
-        </tr>
-        <tr>
-            <td align='center' colspan="3">
-                <span id="team1-score"></span>
-            </td>
-            <td align='center' colspan="3">
-                <span id="team2-score"></span>
-            </td>
-        </tr>
-        <tr id="normal-panel">
-            <td align='center' colspan="3">
-                <button id="team1-add" onclick="add('a','score', 1)">+1</button>
-            </td>
-            <td align='center' colspan="3">
-                <button id="team2-add" onclick="add('b','score', 1)">+1</button>
-            </td>
-        </tr>
-        <tr class="basketball-panel" hidden>
-            <td align='center' colspan="3">
-                <button onclick="add('a','score', 2)">+2</button>
-            </td>
-            <td align='center' colspan="3">
-                <button onclick="add('b','score', 2)">+2</button>
-            </td>
-        </tr>
-        <tr class="basketball-panel" hidden>
-            <td align='center' colspan="3">
-                <button class="set" onclick="add('a','score', 1)">+1</button>
-                <button class="set" onclick="add('a','score', 3)">+3</button>
-            </td>
-            <td align='center' colspan="3">
-                <button class="set" onclick="add('b','score', 1)">+1</button>
-                <button class="set" onclick="add('b','score', 3)">+3</button>
-            </td>
-        </tr>
-        <tr class="chairball-panel" hidden>
-            <td align='center' colspan="3">
-                <button onclick="add('a','score', 2)">+2</button>
-            </td>
-            <td align='center' colspan="3">
-                <button onclick="add('b','score', 2)">+2</button>
-            </td>
-        </tr>
-        <tr>
-            <td align='center' colspan="3">
-                <button id="team1-sub" onclick="add('a','score', -1)">-1</button>
-            </td>
-            <td align='center' colspan="3">
-                <button id="team2-sub" onclick="add('b','score',-1)">-1</button>
-            </td>
-        </tr>
-        <tr class="timer">
-            <td colspan="6" align='center'>
-                <span id="timer-count">Timer</span>
-            </td>
-
-        </tr>
-        <tr class="timer">
-            <td align='center' colspan="2">
-                <button id="start-timer">Start</button>
-            </td>
-            <td align='center' colspan="2">
-                <button id="stop-timer">Stop</button>
-
-            </td>
-            <td align='center' colspan="2">
-                <button id="reset-timer">Reset</button>
-            </td>
-        </tr>
-        <tr id="basketball-foul-score" hidden>
-            <td align='center' colspan="3">
-                <span id="team1-foul-score"></span>
-            </td>
-            <td align='center' colspan="3">
-                <span id="team2-foul-score"></span>
-            </td>
-        </tr>
-
-        <tr id="basketball-foul" hidden>
-            <td align='center' colspan="3">
-                <button class="set" id="team1-foul" onclick="add('a','cval', 1)">Foul+</button>
-                <button class="set" id="team1-sub-foul" onclick="add('a','cval' -1)">Foul-</button>
-            </td>
-            <td align='center' colspan="3">
-                <button class="set" id="team2-foul" onclick="add('b','cval', 1)">Foul+</button>
-                <button class="set" id="team2-sub-foul" onclick="add('b','cval', -1)">Foul-</button>
-            </td>
-        </tr>
-        <tr id="volleyball-set-won" hidden>
-            <td align='center' colspan="3">
-                <span id="team1-set-score"></span>
-            </td>
-            <td align='center' colspan="3">
-                <span id="team2-set-score"></span>
-            </td>
-        </tr>
-        <tr id="volleyball-set" hidden>
-            <td align='center' colspan="3">
-                <button class="set" id="team1-set" onclick="add('a','cval', 1)">Set+</button>
-                <button class="set" id="team1-sub-set" onclick="add('a','cval',-1)">Set-</button>
-            </td>
-            <td align='center' colspan="3">
-                <button class="set" id="team2-set" onclick="add('b','cval', 1)">Set+</button>
-                <button class="set" id="team2-sub-set" onclick="add('b','cval',-1)">Set-</button>
-            </td>
-        </tr>
-
-    </table>
-</div>
+    </div>
 
 
-<script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
