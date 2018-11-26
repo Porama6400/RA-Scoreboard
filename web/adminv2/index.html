@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <link rel="stylesheet" href="bulma.css">
+    <link rel="stylesheet" href="custom.css">
+    <script src="admincommcore.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+
+<div title="login" id="divlogin">
+    <table style="margin: 30px">
+        <tr>
+            <td colspan="2">
+                access key:
+                <input type="text" class="input" id="accessKeyInput">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="height: 10px"></td>
+        </tr>
+        <tr>
+            <td>
+                <button class="button" style="width: 90%" onclick="use($('#accessKeyInput').val())">Login</button>
+            </td>
+            <td>
+                <button class="button fullwidth" style="width: 100%" onclick="$('#divlogin').slideUp(1000)">Hide</button>
+            </td>
+        </tr>
+    </table>
+    <div style="height: 50px; "></div>
+</div>
+
+<table class="table">
+    <tr>
+        <td class="table_main_col">Team A</td>
+        <td class="table_main_col">Team B</td>
+    </tr>
+    <tr>
+        <td>
+            <div class="select is-primary">
+                <select title="Team A" id="teamAname" onchange="setTeam('a',$('#teamAname').val())">
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="select is-primary">
+                <select title="Team B" id="teamBname" onchange="setTeam('b',$('#teamBname').val())">
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                </select>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td id="team_a_score" class="scorerow">0</td>
+        <td id="team_b_score" class="scorerow">0</td>
+    </tr>
+    <tr>
+        <td>
+            <button class="button scoremodbtn pri_btn">+</button>
+        </td>
+        <td>
+            <button class="button scoremodbtn pri_btn">+</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="button scoremodbtn sec_btn">+2</button>
+            <button class="button scoremodbtn tri_btn">+3</button>
+        </td>
+        <td>
+            <button class="button scoremodbtn sec_btn">+2</button>
+            <button class="button scoremodbtn tri_btn">+3</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="button scoremodbtn">Clear</button>
+            <button class="button scoremodbtn">-1</button>
+        </td>
+        <td>
+            <button class="button scoremodbtn">Clear</button>
+            <button class="button scoremodbtn">-1</button>
+        </td>
+    </tr>
+    <tr>
+
+    </tr>
+
+</table>
+</body>
+</html>

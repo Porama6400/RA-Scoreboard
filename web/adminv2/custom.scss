@@ -1,0 +1,43 @@
+.table {
+  td {
+    text-align: center;
+  }
+}
+
+body {
+  font-size: 1.5rem;
+}
+
+.table_main_col {
+  min-width: 130px;
+}
+
+.scorerow {
+  font-size: 2rem;
+}
+
+.halfwidth {
+  width: 49%;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+$btn_width: 70px;
+.scoremodbtn {
+  min-width: $btn_width;
+  min-height: 50px;
+}
+
+.pri_btn {
+  min-width: $btn_width * 2;
+}
+
+.sec_btn {
+
+}
+
+.tri_btn {
+
+}

@@ -29,12 +29,11 @@ export class PacketScoreboardScore extends Packet {
         RESPONSE: 2,
 
         UPDATE: 10,
+        SET: 11,
 
         TIMER_SET: 20,
         TIMER_PAUSE: 21,
-
-        SMALL_TIMER_SET: 30,
-        SMALL_TIMER_PAUSE: 31
+        SMALL_TIMER_SET: 22
     };
 
     constructor() {
