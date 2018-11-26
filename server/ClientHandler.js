@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 var Packets_1 = require("./Packets");
 var Utils_1 = require("./Utils");
 var BoardInfo_1 = require("./BoardInfo");
@@ -38,9 +38,8 @@ var ClientHandler = /** @class */ (function () {
         });
         var thisclient = this;
         this.sio.on(Packets_1.Packet.Channels.Score, function (msg) {
-            if (thisclient.boardinfo.accessKey == null) return;
-            if (thisclient.getBoardHolder() === null) return;
-
+            if (thisclient.boardinfo.accessKey == null)
+                return;
             //FORWARD MESSAGES
             if (thisclient.type === ClientType.REMOTE) {
                 thisclient.getBoardHolder().sio.emit(Packets_1.Packet.Channels.Score, msg);
@@ -54,7 +53,6 @@ var ClientHandler = /** @class */ (function () {
             }
         });
     }
-
     ClientHandler.prototype.isAlive = function () {
         return this.sio.connected;
     };

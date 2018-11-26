@@ -46,9 +46,9 @@ var PacketScoreboardScore = /** @class */ (function (_super) {
         RESPONSE: 2,
         UPDATE: 10,
         SET: 11,
-        TIMER_SET: 20,
-        TIMER_PAUSE: 21,
-        SMALL_TIMER_SET: 22
+        TIMER_DISPLAY: 20,
+        TIMER_SET: 21,
+        TIMER_PAUSE: 22,
     };
     return PacketScoreboardScore;
 }(Packet));
