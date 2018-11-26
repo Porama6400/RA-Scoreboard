@@ -80,6 +80,8 @@ function generate() {
     document.getElementById("team2-span").innerHTML = team2Name;
     document.getElementById("team2-score").innerHTML = team2score;
 
+    use();
+    sendRequest();
     showEdit();
 }
 

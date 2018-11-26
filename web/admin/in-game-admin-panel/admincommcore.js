@@ -7,14 +7,16 @@ var tempDataHandler = null;
 
 var tempHandlerQueue = [];
 
+var keytoken = $('register-key');
+
 //Logging conversation for debugging <3
 socket.on("sbr", (a) => console.log(a));
 socket.on("sbs", (a) => console.log(a));
 
-function use(key) {
+function use() {
     socket.emit("sbr", {
         req: 10,
-        payload: key
+        payload: keytoken
     });
 }
 
