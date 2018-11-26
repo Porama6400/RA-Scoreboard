@@ -5,6 +5,8 @@ var dataInHandler = function () {
 };
 var tempDataHandler = null;
 
+var tempHandlerQueue = [];
+
 //Logging conversation for debugging <3
 socket.on("sbr", (a) => console.log(a));
 socket.on("sbs", (a) => console.log(a));
@@ -32,9 +34,18 @@ function pushScoreboard(data) {
 socket.on("sbs", function (din) {
     if (din.req === 2) {
         dataInHandler(din.payload);
-        if(tempDataHandler !== null) {
+        if (tempDataHandler !== null) {
             tempDataHandler(din.payload);
             tempDataHandler = null;
         }
     }
 });
+
+function processQueue() {
+    if (tempHandlerQueue.length > 0 && tempDataHandler == null) {
+        tempDataHandler = tempHandlerQueue.pop();
+        sendRequest();
+    }
+}
+
+setInterval(processQueue, 50);

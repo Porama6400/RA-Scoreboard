@@ -20,17 +20,22 @@ socket.on("sbr", (data) => {
     }
 });
 
+function broadcastData(){
+    var packetout = {
+        req: 2,
+        payload: data
+    };
+    socket.emit("sbs", packetout);
+}
+
 //Scoreboard Score (Score exchange channel)
 socket.on("sbs", (p_in) => {
     //RESPONSE TO SCOREBOARD DATA REQUEST
     if (p_in.req === 1) {
-        var packetout = {
-            req: 2,
-            payload: data
-        };
-        socket.emit("sbs", packetout);
+        broadcastData();
     } else if (p_in.req === 10) {
         data = p_in.payload;
         update();
+        broadcastData();
     }
 });

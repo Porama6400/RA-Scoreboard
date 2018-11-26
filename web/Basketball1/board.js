@@ -1,7 +1,7 @@
 var data = {
     sporttype: "Basketball",
-    teamAName: "green",
-    teamBName: "red",
+    teamAName: "red",
+    teamBName: "yellow",
     teamAscore: 0,
     teamBscore: 0,
 
@@ -18,12 +18,12 @@ function update() {
     }
 
     if (data.customValName == null) {
-        $("#team_a_customval").text("");
-        $("#team_b_customval").text("");
+        $("#team-a-cval").text("");
+        $("#team-b-cval").text("");
     }
     else {
-        $("#team_a_customval").text(data.customValName + ": " + data.teamAcval);
-        $("#team_b_customval").text(data.customValName + ": " + data.teamBcval);
+        $("#team-a-cval").text(data.customValName + ": " + data.teamAcval);
+        $("#team-b-cval").text(data.customValName + ": " + data.teamBcval);
     }
 
     $("#team_a_score").text(data.teamAscore);
