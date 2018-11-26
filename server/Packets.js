@@ -45,10 +45,10 @@ var PacketScoreboardScore = /** @class */ (function (_super) {
         REQUEST: 1,
         RESPONSE: 2,
         UPDATE: 10,
-        TIMER_SET: 20,
-        TIMER_PAUSE: 21,
-        SMALL_TIMER_SET: 30,
-        SMALL_TIMER_PAUSE: 31
+        SET: 11,
+        TIMER_DISPLAY: 20,
+        TIMER_SET: 21,
+        TIMER_PAUSE: 22,
     };
     return PacketScoreboardScore;
 }(Packet));
