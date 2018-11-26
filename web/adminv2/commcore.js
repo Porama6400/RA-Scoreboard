@@ -3,7 +3,7 @@ var socket = io(server_addr);
 var accessKey = undefined;
 var dataInHandler = function () {
 };
-var tempDataHandler = null;
+var _tempDataHandler = null;
 
 var tempHandlerQueue = [];
 
@@ -16,6 +16,7 @@ function use(key) {
         req: 10,
         payload: key
     });
+    sendRequest();
 }
 
 function sendRequest() {
@@ -33,17 +34,19 @@ function pushScoreboard(data) {
 
 socket.on("sbs", function (din) {
     if (din.req === 2) {
-        dataInHandler(din.payload);
-        if (tempDataHandler !== null) {
-            tempDataHandler(din.payload);
-            tempDataHandler = null;
+        if (_tempDataHandler !== null) {
+            _tempDataHandler(din.payload);
+            _tempDataHandler = null;
+        }
+        else {
+            dataInHandler(din.payload);
         }
     }
 });
 
 function processQueue() {
-    if (tempHandlerQueue.length > 0 && tempDataHandler == null) {
-        tempDataHandler = tempHandlerQueue.pop();
+    if (tempHandlerQueue.length > 0 && _tempDataHandler == null) {
+        _tempDataHandler = tempHandlerQueue.pop();
         sendRequest();
     }
 }

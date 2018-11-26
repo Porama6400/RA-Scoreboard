@@ -1,5 +1,5 @@
 var data = {
-    sporttype: "Basketball",
+    //sporttype: "Basketball",
     teamAName: "red",
     teamBName: "yellow",
     teamAscore: 0,
@@ -11,12 +11,6 @@ var data = {
 };
 
 function update() {
-    if (data.sporttype === 'Basketball') {
-        data.customValName = "foul";
-    } else if (data.sporttype === 'Volleyball') {
-        data.customValName = "set"
-    }
-
     if (data.customValName == null) {
         $("#team-a-cval").text("");
         $("#team-b-cval").text("");

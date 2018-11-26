@@ -1,3 +1,28 @@
+dataInHandler = function (data) {
+    $("#teamAname").val(data.teamAName);
+    $("#teamBname").val(data.teamBName);
+    $("#team_a_score").text(data.teamAscore);
+    $("#team_b_score").text(data.teamBscore);
+    $("#team_a_cval").text(data.teamAcval);
+    $("#team_b_cval").text(data.teamBcval);
+};
+
+function setCvalPrefix(prefix) {
+    if (prefix === "none") prefix = null;
+    tempHandlerQueue.push((data) => {
+        data.customValName = prefix;
+        pushScoreboard(data);
+    });
+}
+
+function clearScore() {
+    tempHandlerQueue.push((data) => {
+        data.teamAscore = 0;
+        data.teamBscore = 0;
+        pushScoreboard(data);
+    });
+}
+
 function setTeam(team, val) {
     tempHandlerQueue.push((data) => {
         if (team === "a") {
