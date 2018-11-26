@@ -44,7 +44,11 @@ var PacketScoreboardScore = /** @class */ (function (_super) {
     PacketScoreboardScore.Type = {
         REQUEST: 1,
         RESPONSE: 2,
-        UPDATE: 10
+        UPDATE: 10,
+        TIMER_SET: 20,
+        TIMER_PAUSE: 21,
+        SMALL_TIMER_SET: 30,
+        SMALL_TIMER_PAUSE: 31
     };
     return PacketScoreboardScore;
 }(Packet));

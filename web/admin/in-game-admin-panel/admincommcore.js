@@ -3,8 +3,7 @@ var socket = io(server_addr);
 var accessKey = undefined;
 var dataInHandler = function () {
 };
-var tempDataHandler = function () {
-};
+var tempDataHandler = null;
 
 //Logging conversation for debugging <3
 socket.on("sbr", (a) => console.log(a));
@@ -33,7 +32,9 @@ function pushScoreboard(data) {
 socket.on("sbs", function (din) {
     if (din.req === 2) {
         dataInHandler(din.payload);
-        tempDataHandler(din.payload);
-        tempDataHandler = null;
+        if(tempDataHandler !== null) {
+            tempDataHandler(din.payload);
+            tempDataHandler = null;
+        }
     }
 });

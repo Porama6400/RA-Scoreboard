@@ -31,6 +31,7 @@ function generate() {
         alert('please select difference team');
         return;
     }
+
     if (sporttype.value === 'Basketball') {
         $('#basketball-foul').show();
         $('#basketball-foul-score').show();
@@ -40,45 +41,36 @@ function generate() {
 
         $("#team1-foul-score").html(team1foul);
         $("#team2-foul-score").html(team2foul);
-    }
-    if (sporttype.value === 'Volleyball') {
+    } else if (sporttype.value === 'Volleyball') {
         $('#volleyball-set-won').show();
         $('#volleyball-set').show();
         $('.timer').hide();
 
         $("#team1-set-score").html(team1foul);
         $("#team2-set-score").html(team2foul);
-    }
-
-    if (sporttype.value === 'Chairball') {
+    } else if (sporttype.value === 'Chairball') {
         $('#normal-panel').hide();
         $('.chairball-panel').show();
     }
 
     if (team1.value === 'f000ff') { //red
         team1Name = 'red';
-    }
-    if (team1.value === 'ff000f') { //green
+    } else if (team1.value === 'ff000f') { //green
         team1Name = 'green';
-    }
-    if (team1.value === 'fff000') {
+    } else if (team1.value === 'fff000') {
         team1Name = 'yellow';
-    }
-    if (team1.value === 'f0f00f') {
+    } else if (team1.value === 'f0f00f') {
         team1Name = 'blue';
     }
 
     //team2
     if (team2.value === 'f000ff') { //red
         team2Name = 'red';
-    }
-    if (team2.value === 'ff000f') { //green
+    } else if (team2.value === 'ff000f') { //green
         team2Name = 'green';
-    }
-    if (team2.value === 'fff000') {
+    } else if (team2.value === 'fff000') {
         team2Name = 'yellow';
-    }
-    if (team2.value === 'f0f00f') {
+    } else if (team2.value === 'f0f00f') {
         team2Name = 'blue';
     }
 
@@ -86,14 +78,25 @@ function generate() {
     document.getElementById("team1-span").innerHTML = team1Name;
     document.getElementById("team1-score").innerHTML = team1score;
     document.getElementById("team2-span").innerHTML = team2Name;
-    document.getElementById("team2-score").innerHTML = team2score
+    document.getElementById("team2-score").innerHTML = team2score;
 
     showEdit();
 }
 
-function add(team, val) {
-    if (team === 'team1') {
-        team1score += val
+function add(team, variable, value) {
+
+    if (team === 'a') {
+        if (variable === 'score') {
+            tempDataHandler = (data) => {
+                data.teamAscore += value;
+            };
+        }
+    }
+    else {
+
+    }
+    /*if (team === 'team1') {
+        team1score += val;
         if (team1score <= 0) {
             team1score = 0
         }
@@ -125,6 +128,7 @@ function add(team, val) {
         console.log(val)
         return
     }
+    */
 }
 
 function foul(team, val) {
