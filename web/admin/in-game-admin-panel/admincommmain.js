@@ -1,3 +1,0 @@
-dataInHandler = function (data) {
-
-};
