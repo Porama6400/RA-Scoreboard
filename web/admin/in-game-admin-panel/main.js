@@ -1,5 +1,4 @@
-
-var sporttype = ""
+var sporttype = "";
 
 var team1Name = "";
 var team2Name = "";
@@ -14,7 +13,6 @@ var team1set = 0;
 var team2set = 0;
 
 var timer = 10.00;
-
 
 
 function generate() {
@@ -35,7 +33,7 @@ function generate() {
     }
     if (sporttype.value === 'Basketball') {
         $('#basketball-foul').show();
-        $('#bassketball-foul-score').show();
+        $('#basketball-foul-score').show();
         $('#normal-panel').hide();
         $('.basketball-panel').show();
 
@@ -166,22 +164,3 @@ function showConfig() {
     $('#panel_edit').hide();
     $('#panel_config').show();
 }
-
-function timer() {
-    document.getElementById("timer-count").innerHTML = 'shit';
-}
-
-function coloner(input) {
-    var value = input.value,
-        value = value.split(':').join('');
-
-    if (value.length > 3) {
-        value = value.substring(0, value.length - 2) + ':' + value.substring(value.length - 2, value.length);
-    }
-
-    input.value = value;
-
-}
-
-
-

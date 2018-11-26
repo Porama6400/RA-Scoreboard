@@ -13,21 +13,32 @@ body {
 }
 
 .page_top_padding {
-  height: 30px;
+  height: 30vh;
 }
 
 .page_side_padding {
   width: 30px;
 }
 
-.logo {
+#team-1-logo {
+  position: absolute;
+  max-height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+#team-2-logo {
+  position: absolute;
+  max-height: 100vh;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.old-logo {
   width: 200px;
   height: 200px;
-}
-.logo img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 50%;
 }
 
 .team_title, #team_b_title, #team_a_title {
@@ -45,20 +56,42 @@ body {
   padding-right: 30px;
 }
 
+.timer {
+  position: fixed;
+  top: 40%;
+  left: 55%;
+  width: 30vw;
+  font-family: "Oswald", sans-serif;
+  font-size: 11rem;
+}
+
+#timer {
+  transform: translate(-50%, -45vh);
+  font-size: 11rem;
+  color: gray;
+}
+
+#short-timer {
+  transform: translate(-40%, 40vh);
+  font-size: 6rem;
+  color: darkgray;
+}
+
 .score_placeholder {
   height: 43vh;
   text-align: center;
   line-height: 0;
   font-family: "Oswald", sans-serif;
-  font-size: 20rem;
-  transform: translateY(-2rem);
+  font-size: 18rem;
+  transform: translateY(-1rem);
 }
 
 .score_customval_placeholder {
   height: 10vh;
   text-align: center;
   line-height: 0;
-  font-size: 3rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 5rem;
   transform: translateY(1rem);
   color: gray;
 }
