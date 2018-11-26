@@ -20,8 +20,8 @@ function setTimerCountdownSec(time_in_seconds,raw_endtimeSec) {
 
     update_clock_sec();
 
-    if (updateIntervalSec != null) clearInterval(updateInterval);
-    updateInterval = setInterval(update_clock_sec, 1000);
+    if (updateIntervalSec != null) clearInterval(updateIntervalSec);
+    updateIntervalSec = setInterval(update_clock_sec, 1000);
 }
 
 
