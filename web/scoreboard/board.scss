@@ -22,12 +22,12 @@ $text_color: #000;
 }
 
 body {
+  user-select: none;
   background-color: $background_color;
   color: $text_color;
   padding: 0;
   border: 0;
 
-  
 }
 
 @if $debug == true {
@@ -54,8 +54,6 @@ body {
   top: 0;
   left: 0;
   z-index: -2;
-
-  user-select: none;
 }
 
 #team-2-logo {
@@ -64,8 +62,6 @@ body {
   top: 0;
   right: 0;
   z-index: -1;
-
-  user-select: none;
 }
 
 .old-logo {
@@ -79,14 +75,12 @@ body {
   transform: translateY(-20%);
   font-family: 'Oswald', sans-serif;
 
-  user-select: none;
 }
 
 #team_a_title {
   @extend .team_title;
   padding-left: $team_title_padding;
 
-  user-select: none;
 }
 
 #team_b_title {
@@ -94,7 +88,6 @@ body {
   text-align: right;
   padding-right: $team_title_padding;
 
-  user-select: none;
 }
 
 .timer {
@@ -104,16 +97,12 @@ body {
   width: 30vw;
   font-family: 'Oswald', sans-serif;
   font-size: $timer-font-size;
-
-  user-select: none;
 }
 
 #timer {
   transform: translate(-50%, -45vh);
   font-size: $timer-font-size;
   color: gray;
-
-  user-select: none;
 }
 
 #myaccesskey {
