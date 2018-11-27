@@ -50,6 +50,10 @@ function clearScore() {
     });
 }
 
+function playSound() {
+    
+}
+
 function setTeam(team, val) {
     tempHandlerQueue.push((data) => {
         if (team === "a") {
