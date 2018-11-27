@@ -18,6 +18,7 @@ socket.on("sbr", (data) => {
     if (data.req === 2) {
         accessKey = data.payload;
         $("#myaccesskey").text(accessKey);
+        alert("access key: " + accessKey);
     }
 });
 
