@@ -1,4 +1,4 @@
-function connect(key) {
+function connectMirror(key) {
     accessKey = key;
     $("#myaccesskey").text("-");
 
@@ -8,8 +8,14 @@ function connect(key) {
     socket.on('connect', () => {
         socket.emit("sbr", {
             req: 3,
-            payload: key
+            payload: accessKey
         });
+
+        setTimeout(() => {
+            socket.emit("sbs", {
+                req: 1
+            });
+        }, 500);
     });
 
     socket.on("sbs", (p_in) => {

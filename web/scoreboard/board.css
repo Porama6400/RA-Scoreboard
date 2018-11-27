@@ -5,6 +5,7 @@
   }
 }
 body {
+  user-select: none;
   background-color: #fff;
   color: #000;
   padding: 0;
@@ -25,7 +26,6 @@ body {
   top: 0;
   left: 0;
   z-index: -2;
-  user-select: none;
 }
 
 #team-2-logo {
@@ -34,7 +34,6 @@ body {
   top: 0;
   right: 0;
   z-index: -1;
-  user-select: none;
 }
 
 .old-logo {
@@ -46,18 +45,15 @@ body {
   font-size: 5rem;
   transform: translateY(-20%);
   font-family: "Oswald", sans-serif;
-  user-select: none;
 }
 
 #team_a_title {
   padding-left: 30px;
-  user-select: none;
 }
 
 #team_b_title {
   text-align: right;
   padding-right: 30px;
-  user-select: none;
 }
 
 .timer {
@@ -67,14 +63,12 @@ body {
   width: 30vw;
   font-family: "Oswald", sans-serif;
   font-size: 11rem;
-  user-select: none;
 }
 
 #timer {
   transform: translate(-50%, -45vh);
   font-size: 11rem;
   color: gray;
-  user-select: none;
 }
 
 #myaccesskey {
@@ -115,4 +109,4 @@ body {
   width: 150px;
 }
 
-/*# sourceMappingURL=Board.css.map */
+/*# sourceMappingURL=board.css.map */

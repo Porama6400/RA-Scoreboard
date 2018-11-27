@@ -1,5 +1,10 @@
+import * as fs from "fs";
+import * as https from "https";
+import * as express from "express";
 import * as SocketIO from "socket.io";
 import {ClientHandler, ClientType} from "./ClientHandler";
+
+const app = express();
 
 export class Server {
 
@@ -7,12 +12,22 @@ export class Server {
 
     public sockio: SocketIO;
 
-    constructor(port: number) {
+    constructor(port: number, privkeypath: string, certpath: string) {
         const thisserver = this;
         console.log("Server initializing...");
 
         //Initialize Socket.io
-        this.sockio = new SocketIO(port);
+        if (certpath === null || certpath === undefined || privkeypath === null || certpath === undefined) {
+            this.sockio = new SocketIO(port);
+        }
+        else {
+            var server = https.createServer({
+                key: fs.readFileSync(privkeypath),
+                cert: fs.readFileSync(certpath)
+            }, app);
+            server.listen(port);
+            this.sockio = SocketIO.listen(server);
+        }
 
         //Handle connection
         this.sockio.on('connection', this.onConnection);

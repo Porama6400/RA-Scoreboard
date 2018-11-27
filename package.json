@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "dependencies": {
     "socket.io": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.10"
   }
 }

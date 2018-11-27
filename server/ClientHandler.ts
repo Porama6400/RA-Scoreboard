@@ -24,7 +24,7 @@ export class ClientHandler {
 
             if (packet.req === PacketScoreboardRegistry.Type.REGISTER) {
 
-                if (this.boardinfo.accessKey === undefined || this.boardinfo.accessKey === null) {
+                if (packet.payload === undefined || packet.payload === null) {
                     this.boardinfo.accessKey = Utils.generateID();
                 }
                 else {

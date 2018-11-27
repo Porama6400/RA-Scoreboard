@@ -1,17 +1,19 @@
-var server_addr = "ws://www.otlg.net:6440";
+var server_addr = "wss://www.otlg.net:6440";
 var socket = io(server_addr);
+
+//System variables
 var accessKey = undefined;
 var dataInHandler = function () {
 };
 var _tempDataHandler = null;
-
 var tempHandlerQueue = [];
 
-//Logging conversation for debugging <3
-socket.on("sbr", (a) => console.log(a));
-socket.on("sbs", (a) => console.log(a));
+//socket.on("sbs", (data) => console.log(data.payload));
+//socket.on("sbr", (data) => console.log(data.payload));
 
+//Functions
 function use(key) {
+    accessKey = key;
     socket.emit("sbr", {
         req: 10,
         payload: key
@@ -32,6 +34,22 @@ function pushScoreboard(data) {
     });
 }
 
+function processQueue() {
+    if (tempHandlerQueue.length > 0 && _tempDataHandler == null) {
+        _tempDataHandler = tempHandlerQueue.pop();
+        sendRequest();
+    }
+}
+
+setInterval(processQueue, 50);
+
+
+//"Connected" event
+socket.on("connect", () => {
+    if (accessKey !== undefined) use(accessKey);
+});
+
+//Scoreboard score channel handler
 socket.on("sbs", function (din) {
     if (din.req === 2) {
         if (_tempDataHandler !== null) {
@@ -42,13 +60,9 @@ socket.on("sbs", function (din) {
             dataInHandler(din.payload);
         }
     }
+    else if (din.req === 20) {
+        //Timer status
+        $("#timedisplay").text(din.payload);
+    }
 });
 
-function processQueue() {
-    if (tempHandlerQueue.length > 0 && _tempDataHandler == null) {
-        _tempDataHandler = tempHandlerQueue.pop();
-        sendRequest();
-    }
-}
-
-setInterval(processQueue, 50);

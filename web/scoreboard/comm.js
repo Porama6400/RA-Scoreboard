@@ -1,10 +1,10 @@
-var server_addr = "ws://www.otlg.net:6440";
+var server_addr = "wss://www.otlg.net:6440";
 var socket = io(server_addr);
 var accessKey = undefined;
 
 //Logging conversation for debugging <3
-socket.on("sbr", (a) => console.log(a));
-socket.on("sbs", (a) => console.log(a));
+//socket.on("sbr", (a) => console.log(a));
+//socket.on("sbs", (a) => console.log(a));
 
 socket.on('connect', () => {
     console.log('Connected to ' + server_addr);
