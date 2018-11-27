@@ -27,7 +27,7 @@ body {
   padding: 0;
   border: 0;
 
-  user-select: none;
+  
 }
 
 @if $debug == true {
@@ -54,6 +54,8 @@ body {
   top: 0;
   left: 0;
   z-index: -2;
+
+  user-select: none;
 }
 
 #team-2-logo {
@@ -62,6 +64,8 @@ body {
   top: 0;
   right: 0;
   z-index: -1;
+
+  user-select: none;
 }
 
 .old-logo {
@@ -74,17 +78,23 @@ body {
   font-size: $team_title_fontsize;
   transform: translateY(-20%);
   font-family: 'Oswald', sans-serif;
+
+  user-select: none;
 }
 
 #team_a_title {
   @extend .team_title;
   padding-left: $team_title_padding;
+
+  user-select: none;
 }
 
 #team_b_title {
   @extend .team_title;
   text-align: right;
   padding-right: $team_title_padding;
+
+  user-select: none;
 }
 
 .timer {
@@ -94,18 +104,23 @@ body {
   width: 30vw;
   font-family: 'Oswald', sans-serif;
   font-size: $timer-font-size;
+
+  user-select: none;
 }
 
 #timer {
   transform: translate(-50%, -45vh);
   font-size: $timer-font-size;
   color: gray;
+
+  user-select: none;
 }
 
-#short-timer {
-  transform: translate(-40%, 40vh);
-  font-size: 6rem;
-  color: darkgray;
+#myaccesskey {
+  position: fixed;
+  z-index: 5;
+  user-select: text;
+
 }
 
 .score_placeholder {
@@ -116,6 +131,8 @@ body {
   font-family: 'Oswald', sans-serif;
   font-size: $score-font-size;
   transform: translateY(-1rem);
+
+  user-select: none;
 }
 
 .score_customval_placeholder {
@@ -127,6 +144,8 @@ body {
   font-size: 5rem;
   transform: translateY(1rem);
   color: gray;
+
+  user-select: none;
 }
 
 .tablecolfixer {
