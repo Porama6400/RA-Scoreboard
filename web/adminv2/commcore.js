@@ -42,6 +42,10 @@ socket.on("sbs", function (din) {
             dataInHandler(din.payload);
         }
     }
+    else if (din.req === 20) {
+        //Timer status
+        $("#timedisplay").text(din.payload);
+    }
 });
 
 function processQueue() {
