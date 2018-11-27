@@ -19,6 +19,10 @@ function setTimerCountdown(time_in_minutes, raw_endtime) {
         });
         $('#timer').text(msg);
         if (t.total <= 0) {
+            //Broadcast that timer has ended
+            socket.emit("sbs", {
+                req: 23
+            });
             clearInterval(updateInterval);
             updateInterval = null;
         }

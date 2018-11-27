@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Scoreboard</title>
     <link rel="stylesheet" href="board.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script>var exports = {}</script>
@@ -61,7 +62,7 @@
 <div id="configpage">
     Your access key: <span id="myaccesskey" >[Connecting...]</span><br>
     <label for="mirrorkey">Mirroring key: </label><input type="text" id="mirrorkey">
-    <button onclick="connect($('#mirrorkey').val())">OK</button><br>
+    <button onclick="connectMirror($('#mirrorkey').val())">OK</button><br>
     <button onclick="$('#configpage').hide()">Close</button>
 </div>
 

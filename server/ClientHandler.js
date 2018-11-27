@@ -19,7 +19,7 @@ var ClientHandler = /** @class */ (function () {
         //Scoreboard Registry Packets (sbr -> scoreboard registry)
         this.sio.on(Packets_1.Packet.Channels.Registry, function (packet) {
             if (packet.req === Packets_1.PacketScoreboardRegistry.Type.REGISTER) {
-                if (_this.boardinfo.accessKey === undefined || _this.boardinfo.accessKey === null) {
+                if (packet.payload === undefined || packet.payload === null) {
                     _this.boardinfo.accessKey = Utils_1.Utils.generateID();
                 }
                 else {

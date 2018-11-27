@@ -48,7 +48,8 @@ var PacketScoreboardScore = /** @class */ (function (_super) {
         UPDATE: 10,
         TIMER_STATUS: 20,
         TIMER_SET: 21,
-        TIMER_PAUSE: 22
+        TIMER_PAUSE: 22,
+        TIMER_END_ANNOUNCE: 23
     };
     return PacketScoreboardScore;
 }(Packet));
