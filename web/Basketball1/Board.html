@@ -11,52 +11,59 @@
     <script src="board.js"></script>
     <script src="timer.js"></script>
     <script src="comm.js"></script>
+    <script src="mirror.js"></script>
 </head>
 
 <body style="margin: 0;">
 
-    <!-- ALIGN TO THE TOP -->
+<!-- ALIGN TO THE TOP -->
 
-    <img class="logo" id="team-1-logo" src="#" >
-    <img class="logo" id="team-2-logo" src="#" >
-    <div class="timer" id="timer">00.00</div>
-    <div class="timer" id="short-timer">00.00</div>
-    <table style="width: 100vw">
-        <tr class="page_top_padding">
-            <td></td>
-            <td></td>
-            <td class="tablecolfixer"></td>
-            <td class="tablecolfixer"></td>
-            <td class="tablecolfixer"></td>
-            <td class="tablecolfixer"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="score_placeholder">
-            <td></td>
-            <td colspan="3" id="team_a_score">3</td>
-            <td colspan="3" id="team_b_score">3</td>
-            <td></td>
-        </tr>
-        <tr class="score_customval_placeholder"  >
-            <td></td>
-            <td colspan="3" class="team_customval" ><span id="team-a-cval"></span></td>
-            <td colspan="3" class="team_customval" ><span id="team-b-cval"></span></td>
-            <td></td>
-        </tr>
-    </table>
+<img class="logo" id="team-1-logo" src="#">
+<img class="logo" id="team-2-logo" src="#">
+<div class="timer" id="timer">00.00</div>
+<table style="width: 100vw">
+    <tr class="page_top_padding">
+        <td></td>
+        <td></td>
+        <td class="tablecolfixer"></td>
+        <td class="tablecolfixer"></td>
+        <td class="tablecolfixer"></td>
+        <td class="tablecolfixer"></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr class="score_placeholder">
+        <td></td>
+        <td colspan="3" id="team_a_score">3</td>
+        <td colspan="3" id="team_b_score">3</td>
+        <td></td>
+    </tr>
+    <tr class="score_customval_placeholder">
+        <td></td>
+        <td colspan="3" class="team_customval"><span id="team-a-cval"></span></td>
+        <td colspan="3" class="team_customval"><span id="team-b-cval"></span></td>
+        <td></td>
+    </tr>
+</table>
 
-    <!-- ALIGN TO THE BOTTOM -->
-    <table class="footer_bar" style="width: 100%;position: fixed;bottom: 0">
-        <tr>
-            <td>
+<!-- ALIGN TO THE BOTTOM -->
+<table class="footer_bar" style="width: 100%;position: fixed;bottom: 0">
+    <tr>
+        <td>
 
-            </td>
-            <td id="footer_connection_status">
-                %Connection%
-            </td>
-        </tr>
-    </table>
+        </td>
+        <td id="footer_connection_status">
+
+        </td>
+    </tr>
+</table>
+
+<div id="configpage">
+    Your access key: <span id="myaccesskey">[Connecting...]</span><br>
+    <label for="mirrorkey">Mirroring key: </label><input type="text" id="mirrorkey">
+    <button onclick="connect($('#mirrorkey').val())">OK</button><br>
+    <button onclick="$('#configpage').hide()">Close</button>
+</div>
 
 </body>
 

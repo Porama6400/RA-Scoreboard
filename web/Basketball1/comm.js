@@ -1,4 +1,4 @@
-var server_addr = "ws://localhost:443";
+var server_addr = "ws://www.otlg.net:6440";
 var socket = io(server_addr);
 var accessKey = undefined;
 
@@ -17,10 +17,11 @@ socket.on('connect', () => {
 socket.on("sbr", (data) => {
     if (data.req === 2) {
         accessKey = data.payload;
+        $("#myaccesskey").text(accessKey);
     }
 });
 
-function broadcastData(){
+function broadcastScoreData() {
     var packetout = {
         req: 2,
         payload: data
@@ -32,10 +33,17 @@ function broadcastData(){
 socket.on("sbs", (p_in) => {
     //RESPONSE TO SCOREBOARD DATA REQUEST
     if (p_in.req === 1) {
-        broadcastData();
+        broadcastScoreData();
     } else if (p_in.req === 10) {
         data = p_in.payload;
         update();
-        broadcastData();
+        broadcastScoreData();
+    }
+    else if (p_in.req === 21) {
+        setTimerCountdown(p_in.payload);
+        pauseTimer();
+    }
+    else if (p_in.req === 22) {
+        pauseTimer();
     }
 });

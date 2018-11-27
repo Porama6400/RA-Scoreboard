@@ -6,7 +6,8 @@ var BoardInfo_1 = require("./BoardInfo");
 var ClientType;
 (function (ClientType) {
     ClientType[ClientType["SCOREBOARD"] = 1] = "SCOREBOARD";
-    ClientType[ClientType["REMOTE"] = 2] = "REMOTE";
+    ClientType[ClientType["SCOREBOARD_MIRROR"] = 2] = "SCOREBOARD_MIRROR";
+    ClientType[ClientType["REMOTE"] = 10] = "REMOTE";
 })(ClientType = exports.ClientType || (exports.ClientType = {}));
 var ClientHandler = /** @class */ (function () {
     function ClientHandler(server, sio) {
@@ -18,11 +19,11 @@ var ClientHandler = /** @class */ (function () {
         //Scoreboard Registry Packets (sbr -> scoreboard registry)
         this.sio.on(Packets_1.Packet.Channels.Registry, function (packet) {
             if (packet.req === Packets_1.PacketScoreboardRegistry.Type.REGISTER) {
-                if (packet.payload !== undefined) {
-                    _this.boardinfo.accessKey = packet.payload;
-                }
-                else if (_this.boardinfo.accessKey == undefined) {
+                if (_this.boardinfo.accessKey === undefined || _this.boardinfo.accessKey === null) {
                     _this.boardinfo.accessKey = Utils_1.Utils.generateID();
+                }
+                else {
+                    _this.boardinfo.accessKey = packet.payload;
                 }
                 console.log("Client at " + _this.getIP() + " announced as a scoreboard - ID: " + _this.boardinfo.accessKey);
                 var packetOut = new Packets_1.PacketScoreboardRegistry();
@@ -31,9 +32,14 @@ var ClientHandler = /** @class */ (function () {
                 _this.sio.emit(Packets_1.Packet.Channels.Registry, packetOut);
                 _this.type = ClientType.SCOREBOARD;
             }
-            if (packet.req === Packets_1.PacketScoreboardRegistry.Type.USE) {
+            else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.USE) {
                 console.log("Client at " + _this.getIP() + " now bound to scoreboard " + packet.payload);
                 _this.useScoreboard(packet.payload);
+            }
+            else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.MIRROR_REQUEST) {
+                _this.type = ClientType.SCOREBOARD_MIRROR;
+                _this.boardinfo.accessKey = packet.payload;
+                console.log("Client at " + _this.getIP() + " mirroring the scoreboard " + packet.payload);
             }
         });
         var thisclient = this;
@@ -41,15 +47,20 @@ var ClientHandler = /** @class */ (function () {
             if (thisclient.boardinfo.accessKey == null)
                 return;
             //FORWARD MESSAGES
-            if (thisclient.type === ClientType.REMOTE) {
-                thisclient.getBoardHolder().sio.emit(Packets_1.Packet.Channels.Score, msg);
-            }
-            else if (thisclient.type === ClientType.SCOREBOARD) {
+            if (thisclient.type === ClientType.SCOREBOARD) {
                 thisclient.server.clientHandlers.forEach(function (client) {
-                    if (client.type === ClientType.REMOTE && client.boardinfo.accessKey === thisclient.boardinfo.accessKey) {
+                    if (client.sio.connected
+                        && client.type !== ClientType.SCOREBOARD
+                        && client.boardinfo.accessKey === thisclient.boardinfo.accessKey) {
                         client.sio.emit(Packets_1.Packet.Channels.Score, msg);
                     }
                 });
+            }
+            else {
+                //Forward message to scoreboard if exist
+                var target = thisclient.getBoardHolder();
+                if (target != null)
+                    target.sio.emit(Packets_1.Packet.Channels.Score, msg);
             }
         });
     }

@@ -1,3 +1,3 @@
 import {Server} from "./Server";
 
-let server: Server = new Server(443);
+let server: Server = new Server(6440);

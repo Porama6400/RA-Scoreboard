@@ -31,6 +31,7 @@ var PacketScoreboardRegistry = /** @class */ (function (_super) {
     PacketScoreboardRegistry.Type = {
         REGISTER: 1,
         ACKNOWLEDGE: 2,
+        MIRROR_REQUEST: 3,
         USE: 10 // SPECIFIED WHAT SCOREBOARD TO REMOTE TO
     };
     return PacketScoreboardRegistry;
@@ -45,10 +46,9 @@ var PacketScoreboardScore = /** @class */ (function (_super) {
         REQUEST: 1,
         RESPONSE: 2,
         UPDATE: 10,
-        SET: 11,
-        TIMER_DISPLAY: 20,
+        TIMER_STATUS: 20,
         TIMER_SET: 21,
-        TIMER_PAUSE: 22,
+        TIMER_PAUSE: 22
     };
     return PacketScoreboardScore;
 }(Packet));

@@ -1,17 +1,23 @@
 var updateInterval = null;
 var endtime;
 
-function setTimerCountdown(time_in_minutes,raw_endtime) {
-    if(raw_endtime === undefined) {
+function setTimerCountdown(time_in_minutes, raw_endtime) {
+    if (raw_endtime === undefined) {
         var current_time = Date.parse(new Date());
         endtime = new Date(current_time + time_in_minutes * 60 * 1000);
     }
-    else{
+    else {
         endtime = raw_endtime;
     }
+
     function update_clock() {
         var t = time_remaining(endtime);
-        $('#timer').html(t.minutes + '.' + ("0" + t.seconds).substr(-2));
+        var msg = t.minutes + '.' + ("0" + t.seconds).substr(-2);
+        socket.emit("sbs", {
+            req: 20,
+            payload: msg
+        });
+        $('#timer').text(msg);
         if (t.total <= 0) {
             clearInterval(updateInterval);
             updateInterval = null;
@@ -44,7 +50,7 @@ function pauseTimer() {
         time_left = time_remaining(endtime).total;
     }
     else {
-        setTimerCountdown(1 , new Date(Date.parse(new Date()) + time_left));
+        setTimerCountdown(1, new Date(Date.parse(new Date()) + time_left));
     }
     _paused = !_paused;
 }

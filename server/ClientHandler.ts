@@ -1,11 +1,12 @@
-import {Packet, PacketScoreboardScore, PacketScoreboardRegistry} from "./Packets";
+import {Packet, PacketScoreboardRegistry, PacketScoreboardScore} from "./Packets";
 import {Utils} from "./Utils";
 import {BoardInfo} from "./BoardInfo";
 import {Server} from "./Server";
 
 export enum ClientType {
     SCOREBOARD = 1,
-    REMOTE = 2
+    SCOREBOARD_MIRROR = 2,
+    REMOTE = 10
 }
 
 export class ClientHandler {
@@ -23,13 +24,12 @@ export class ClientHandler {
 
             if (packet.req === PacketScoreboardRegistry.Type.REGISTER) {
 
-                if (packet.payload !== undefined) {
-                    this.boardinfo.accessKey = packet.payload;
-                }
-                else if (this.boardinfo.accessKey == undefined) {
+                if (this.boardinfo.accessKey === undefined || this.boardinfo.accessKey === null) {
                     this.boardinfo.accessKey = Utils.generateID();
                 }
-
+                else {
+                    this.boardinfo.accessKey = packet.payload;
+                }
                 console.log("Client at " + this.getIP() + " announced as a scoreboard - ID: " + this.boardinfo.accessKey);
 
                 let packetOut: PacketScoreboardRegistry = new PacketScoreboardRegistry();
@@ -38,10 +38,14 @@ export class ClientHandler {
                 this.sio.emit(Packet.Channels.Registry, packetOut);
                 this.type = ClientType.SCOREBOARD;
             }
-
-            if (packet.req === PacketScoreboardRegistry.Type.USE) {
+            else if (packet.req === PacketScoreboardRegistry.Type.USE) {
                 console.log("Client at " + this.getIP() + " now bound to scoreboard " + packet.payload)
                 this.useScoreboard(packet.payload);
+            }
+            else if (packet.req === PacketScoreboardRegistry.Type.MIRROR_REQUEST) {
+                this.type = ClientType.SCOREBOARD_MIRROR;
+                this.boardinfo.accessKey = packet.payload;
+                console.log("Client at " + this.getIP() + " mirroring the scoreboard " + packet.payload)
             }
         });
 
@@ -50,15 +54,19 @@ export class ClientHandler {
             if (thisclient.boardinfo.accessKey == null) return;
 
             //FORWARD MESSAGES
-            if (thisclient.type === ClientType.REMOTE) {
-                thisclient.getBoardHolder().sio.emit(Packet.Channels.Score, msg);
-            }
-            else if (thisclient.type === ClientType.SCOREBOARD) {
+            if (thisclient.type === ClientType.SCOREBOARD) {
                 thisclient.server.clientHandlers.forEach((client) => {
-                    if (client.type === ClientType.REMOTE && client.boardinfo.accessKey === thisclient.boardinfo.accessKey) {
+                    if (client.sio.connected
+                        && client.type !== ClientType.SCOREBOARD
+                        && client.boardinfo.accessKey === thisclient.boardinfo.accessKey) {
                         client.sio.emit(Packet.Channels.Score, msg);
                     }
                 })
+            }
+            else {
+                //Forward message to scoreboard if exist
+                var target: ClientHandler = thisclient.getBoardHolder();
+                if (target != null) target.sio.emit(Packet.Channels.Score, msg);
             }
         });
     }

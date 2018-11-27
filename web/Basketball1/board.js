@@ -7,7 +7,9 @@ var data = {
 
     customValName: null,
     teamAcval: 0,
-    teamBcval: 0
+    teamBcval: 0,
+
+    timerEnable: false
 };
 
 function update() {
@@ -18,6 +20,13 @@ function update() {
     else {
         $("#team-a-cval").text(data.customValName + ": " + data.teamAcval);
         $("#team-b-cval").text(data.customValName + ": " + data.teamBcval);
+    }
+
+    if (data.timerEnable) {
+        $("#timer").show();
+    }
+    else {
+        $("#timer").hide();
     }
 
     $("#team_a_score").text(data.teamAscore);
