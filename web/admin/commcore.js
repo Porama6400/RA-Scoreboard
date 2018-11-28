@@ -46,7 +46,9 @@ setInterval(processQueue, 50);
 
 //"Connected" event
 socket.on("connect", () => {
-    if (accessKey !== undefined) use(accessKey);
+    if (accessKey !== undefined) setTimeout(()=>{
+	use(accessKey);
+    },500);
 });
 
 //Scoreboard score channel handler
