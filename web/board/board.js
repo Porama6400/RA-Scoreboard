@@ -33,23 +33,23 @@ function update() {
     $("#team_b_score").text(data.teamBscore);
 
     if (data.teamAName === 'red') {
-        $("#team-1-logo").attr("src", "../assets/Red-left.jpg");
+        $("#team-1-logo").attr("src", "../sounds/Red-left.jpg");
     } else if (data.teamAName === 'green') {
-        $("#team-1-logo").attr("src", "../assets/Green-left.jpg");
+        $("#team-1-logo").attr("src", "../sounds/Green-left.jpg");
     } else if (data.teamAName === 'yellow') {
-        $("#team-1-logo").attr("src", "../assets/Yellow-left.jpg");
+        $("#team-1-logo").attr("src", "../sounds/Yellow-left.jpg");
     } else if (data.teamAName === 'blue') {
-        $("#team-1-logo").attr("src", "../assets/Blue-left.jpg");
+        $("#team-1-logo").attr("src", "../sounds/Blue-left.jpg");
     }
 
     if (data.teamBName === 'red') {
-        $("#team-2-logo").attr("src", "../assets/Red-right.jpg");
+        $("#team-2-logo").attr("src", "../sounds/Red-right.jpg");
     } else if (data.teamBName === 'green') {
-        $("#team-2-logo").attr("src", "../assets/Green-right.jpg");
+        $("#team-2-logo").attr("src", "../sounds/Green-right.jpg");
     } else if (data.teamBName === 'yellow') {
-        $("#team-2-logo").attr("src", "../assets/Yellow-right.jpg");
+        $("#team-2-logo").attr("src", "../sounds/Yellow-right.jpg");
     } else if (data.teamBName === 'blue') {
-        $("#team-2-logo").attr("src", "../assets/Blue-right.jpg");
+        $("#team-2-logo").attr("src", "../sounds/Blue-right.jpg");
     }
 }
 

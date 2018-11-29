@@ -1,6 +1,8 @@
 var server_addr = "wss://www.otlg.net:6440";
 var socket = io(server_addr);
 
+var registerProtocol = 10; //DEFAULT as 10 (REMOTE) can be other as well such as
+
 //System variables
 var accessKey = undefined;
 var dataInHandler = function () {
@@ -15,7 +17,7 @@ var tempHandlerQueue = [];
 function use(key) {
     accessKey = key;
     socket.emit("sbr", {
-        req: 10,
+        req: registerProtocol,
         payload: key
     });
     sendRequest();
@@ -34,6 +36,13 @@ function pushScoreboard(data) {
     });
 }
 
+function playSound(name) {
+    socket.emit("sbs", {
+        req: 30,
+        payload: name
+    });
+}
+
 function processQueue() {
     if (tempHandlerQueue.length > 0 && _tempDataHandler == null) {
         _tempDataHandler = tempHandlerQueue.pop();
@@ -46,9 +55,8 @@ setInterval(processQueue, 50);
 
 //"Connected" event
 socket.on("connect", () => {
-    if (accessKey !== undefined) setTimeout(()=>{
-	use(accessKey);
-    },500);
+    if (accessKey !== undefined)
+        use(accessKey);
 });
 
 //Scoreboard score channel handler

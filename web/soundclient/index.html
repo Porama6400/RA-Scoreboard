@@ -2,21 +2,28 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bleepppppp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="../admin/commcore.js"></script>
+
 </head>
 
 <body>
-    <audio id="Bleep" >
-        <source src="./assets/Game Buzzer Sound Effect_1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <button id="play">Play</button>
-    <script src="main.js"></script>
+<div style="font-size: 10rem">
+    Scoreboard<br>Sound<br>Engine >_<
+</div>
+
+<div id="divauth">
+    <label for="acckey">Access key: </label><input type="text" id="acckey">
+    <button onclick="use($('#acckey').val())">Login</button>
+    <button onclick="$('#divauth').hide()">Hide</button>
+</div>
 </body>
 
+
+<script src="main.js"></script>
 </html>

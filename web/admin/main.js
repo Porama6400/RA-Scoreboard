@@ -1,6 +1,6 @@
 dataInHandler = function (data) {
 
-    $("#timer_enabled").val(data.timerEnable ? "on" : "off");
+    $("#timer_enabled")[0].checked = data.timerEnable ;
 
     $("#teamAname").val(data.teamAName);
     $("#teamBname").val(data.teamBName);
@@ -32,12 +32,9 @@ function pauseTimer() {
     });
 }
 
-function setTimerEnable(tedat) {
-    if (tedat === "on") tedat = true;
-    else tedat = false;
-
+function setTimerEnable(timerEnabled) {
     tempHandlerQueue.push((data) => {
-        data.timerEnable = tedat;
+        data.timerEnable = timerEnabled;
         pushScoreboard(data);
     });
 }
@@ -92,3 +89,9 @@ function add(team, variable, value) {
         }
     }
 }
+
+$(document).keyup(function (e) {
+    if (e.keyCode === 83) { // key -> S
+        playSound('buzzer');
+    }
+});

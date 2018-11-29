@@ -7,6 +7,7 @@ var ClientType;
 (function (ClientType) {
     ClientType[ClientType["SCOREBOARD"] = 1] = "SCOREBOARD";
     ClientType[ClientType["SCOREBOARD_MIRROR"] = 2] = "SCOREBOARD_MIRROR";
+    ClientType[ClientType["SOUND_PLAYER"] = 3] = "SOUND_PLAYER";
     ClientType[ClientType["REMOTE"] = 10] = "REMOTE";
 })(ClientType = exports.ClientType || (exports.ClientType = {}));
 var ClientHandler = /** @class */ (function () {
@@ -25,7 +26,7 @@ var ClientHandler = /** @class */ (function () {
                 else {
                     _this.boardinfo.accessKey = packet.payload;
                 }
-                console.log("Client at " + _this.getIP() + " announced as a scoreboard - ID: " + _this.boardinfo.accessKey);
+                console.log("Client at " + _this.getIP() + " running as a scoreboard on " + _this.boardinfo.accessKey);
                 var packetOut = new Packets_1.PacketScoreboardRegistry();
                 packetOut.req = Packets_1.PacketScoreboardRegistry.Type.ACKNOWLEDGE;
                 packetOut.payload = _this.boardinfo.accessKey;
@@ -33,7 +34,7 @@ var ClientHandler = /** @class */ (function () {
                 _this.type = ClientType.SCOREBOARD;
             }
             else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.USE) {
-                console.log("Client at " + _this.getIP() + " now bound to scoreboard " + packet.payload);
+                console.log("Client at " + _this.getIP() + " bound to the scoreboard " + packet.payload);
                 _this.useScoreboard(packet.payload);
             }
             else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.MIRROR_REQUEST) {
@@ -41,13 +42,28 @@ var ClientHandler = /** @class */ (function () {
                 _this.boardinfo.accessKey = packet.payload;
                 console.log("Client at " + _this.getIP() + " mirroring the scoreboard " + packet.payload);
             }
+            else if (packet.req == Packets_1.PacketScoreboardRegistry.Type.SOUND_REQUEST) {
+                _this.type = ClientType.SOUND_PLAYER;
+                _this.boardinfo.accessKey = packet.payload;
+                console.log("Client at " + _this.getIP() + " running as a sound player on " + packet.payload);
+            }
         });
         var thisclient = this;
         this.sio.on(Packets_1.Packet.Channels.Score, function (msg) {
             if (thisclient.boardinfo.accessKey == null)
                 return;
-            //FORWARD MESSAGES
-            if (thisclient.type === ClientType.SCOREBOARD) {
+            if (msg.req === Packets_1.PacketScoreboardScore.Type.SOUND) {
+                // FORWARD TO EVERYONE IF IT IS SOUND PACKET (MAY CHANGE LATER)
+                thisclient.server.clientHandlers.forEach(function (client) {
+                    if (client.sio.connected
+                        && client != thisclient
+                        && client.boardinfo.accessKey === thisclient.boardinfo.accessKey) {
+                        client.sio.emit(Packets_1.Packet.Channels.Score, msg);
+                    }
+                });
+            }
+            else if (thisclient.type === ClientType.SCOREBOARD) {
+                //FORWARD MESSAGES
                 thisclient.server.clientHandlers.forEach(function (client) {
                     if (client.sio.connected
                         && client.type !== ClientType.SCOREBOARD
@@ -57,7 +73,7 @@ var ClientHandler = /** @class */ (function () {
                 });
             }
             else {
-                //Forward message to scoreboard if exist
+                // FORWARD MESSAGE TO SCOREBOARD IF SCOREBOARD ONLINE
                 var target = thisclient.getBoardHolder();
                 if (target != null)
                     target.sio.emit(Packets_1.Packet.Channels.Score, msg);

@@ -32,6 +32,7 @@ var PacketScoreboardRegistry = /** @class */ (function (_super) {
         REGISTER: 1,
         ACKNOWLEDGE: 2,
         MIRROR_REQUEST: 3,
+        SOUND_REQUEST: 4,
         USE: 10 // SPECIFIED WHAT SCOREBOARD TO REMOTE TO
     };
     return PacketScoreboardRegistry;
@@ -49,7 +50,8 @@ var PacketScoreboardScore = /** @class */ (function (_super) {
         TIMER_STATUS: 20,
         TIMER_SET: 21,
         TIMER_PAUSE: 22,
-        TIMER_END_ANNOUNCE: 23
+        TIMER_END_ANNOUNCE: 23,
+        SOUND: 30
     };
     return PacketScoreboardScore;
 }(Packet));

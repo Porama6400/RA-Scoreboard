@@ -7,19 +7,11 @@ body {
 }
 
 .table_main_col {
-  min-width: 200px;
+  min-width: 250px;
 }
 
 .scorerow {
   font-size: 2rem;
-}
-
-.halfwidth {
-  width: 45%;
-}
-
-.fullwidth {
-  width: 100%;
 }
 
 .scoremodbtn {
@@ -29,6 +21,19 @@ body {
 
 .pri_score_btn {
   min-width: 140px;
+}
+
+@media (max-device-width: 500px) {
+  .table_main_col {
+    width: 50vw;
+  }
+}
+@media (min-device-width: 501px) {
+  #maincontainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 /*# sourceMappingURL=custom.css.map */
