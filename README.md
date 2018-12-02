@@ -17,7 +17,4 @@ node main.js
 ### 3. Open Admin Panel and Board Panel
  use the same access key to control Board Panel from Admin Panel
 
- ## PS.
- As a programmer. We feel very grateful to worked on this project until it's done. Thanks to Grade 12 student that gave us a chance and We did it! all of us. Thanks for your hard working along the week. Thanks for everythings that you did in Programming Club. Hope you guys can get into a good University as you expected.
-
- -Hope you read soon [wit03](https://github.com/wit03)
+ 
