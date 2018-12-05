@@ -8,6 +8,7 @@ var ClientType;
     ClientType[ClientType["SCOREBOARD"] = 1] = "SCOREBOARD";
     ClientType[ClientType["SCOREBOARD_MIRROR"] = 2] = "SCOREBOARD_MIRROR";
     ClientType[ClientType["SOUND_PLAYER"] = 3] = "SOUND_PLAYER";
+    ClientType[ClientType["SYSTEM_MONITOR"] = 4] = "SYSTEM_MONITOR";
     ClientType[ClientType["REMOTE"] = 10] = "REMOTE";
 })(ClientType = exports.ClientType || (exports.ClientType = {}));
 var ClientHandler = /** @class */ (function () {
@@ -15,8 +16,12 @@ var ClientHandler = /** @class */ (function () {
         var _this = this;
         this.type = ClientType.REMOTE;
         this.boardinfo = new BoardInfo_1.BoardInfo();
+        this.pingPayload = null;
+        this.pingIntegrity = 10;
         this.sio = sio;
         this.server = server;
+        this.id = ClientHandler.nextClientID;
+        ClientHandler.nextClientID++;
         //Scoreboard Registry Packets (sbr -> scoreboard registry)
         this.sio.on(Packets_1.Packet.Channels.Registry, function (packet) {
             if (packet.req === Packets_1.PacketScoreboardRegistry.Type.REGISTER) {
@@ -26,60 +31,78 @@ var ClientHandler = /** @class */ (function () {
                 else {
                     _this.boardinfo.accessKey = packet.payload;
                 }
-                console.log("Client at " + _this.getIP() + " running as a scoreboard on " + _this.boardinfo.accessKey);
-                var packetOut = new Packets_1.PacketScoreboardRegistry();
-                packetOut.req = Packets_1.PacketScoreboardRegistry.Type.ACKNOWLEDGE;
-                packetOut.payload = _this.boardinfo.accessKey;
-                _this.sio.emit(Packets_1.Packet.Channels.Registry, packetOut);
+                console.log("Client " + _this.id + " at " + _this.getIP() + " running as a scoreboard on " + _this.boardinfo.accessKey);
+                var packetOut_1 = new Packets_1.PacketScoreboardRegistry();
+                packetOut_1.req = Packets_1.PacketScoreboardRegistry.Type.ACKNOWLEDGE;
+                packetOut_1.payload = _this.boardinfo.accessKey;
+                _this.send(Packets_1.Packet.Channels.Registry, packetOut_1);
                 _this.type = ClientType.SCOREBOARD;
             }
             else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.USE) {
-                console.log("Client at " + _this.getIP() + " bound to the scoreboard " + packet.payload);
+                console.log("Client " + _this.id + " at " + _this.getIP() + " bound to the scoreboard " + packet.payload);
                 _this.useScoreboard(packet.payload);
             }
             else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.MIRROR_REQUEST) {
                 _this.type = ClientType.SCOREBOARD_MIRROR;
-                _this.boardinfo.accessKey = packet.payload;
-                console.log("Client at " + _this.getIP() + " mirroring the scoreboard " + packet.payload);
+                _this.useScoreboard(packet.payload);
+                console.log("Client" + _this.id + " at " + _this.getIP() + " mirroring the scoreboard " + packet.payload);
             }
-            else if (packet.req == Packets_1.PacketScoreboardRegistry.Type.SOUND_REQUEST) {
+            else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.SOUND_REQUEST) {
                 _this.type = ClientType.SOUND_PLAYER;
-                _this.boardinfo.accessKey = packet.payload;
-                console.log("Client at " + _this.getIP() + " running as a sound player on " + packet.payload);
+                _this.useScoreboard(packet.payload);
+                console.log("Client " + _this.id + " at " + _this.getIP() + " running as a sound client on " + packet.payload);
+            }
+            else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.SYSMONITOR) {
+                _this.type = ClientType.SYSTEM_MONITOR;
+                _this.useScoreboard(packet.payload);
+                console.log("Client " + _this.id + " at " + _this.getIP() + " running as a system monitor on " + packet.payload);
+            }
+            else if (packet.req === Packets_1.PacketScoreboardRegistry.Type.NETWORK_LIST) {
+                var packetOut = new Packets_1.PacketScoreboardRegistry();
+                packetOut.req = Packets_1.PacketScoreboardRegistry.Type.NETWORK_LIST;
+                packetOut.payload = _this.server.getConnectionSummary(_this.boardinfo.accessKey);
+                _this.send(Packets_1.Packet.Channels.Registry, packetOut);
             }
         });
-        var thisclient = this;
         this.sio.on(Packets_1.Packet.Channels.Score, function (msg) {
-            if (thisclient.boardinfo.accessKey == null)
+            if (_this.boardinfo.accessKey == null)
                 return;
             if (msg.req === Packets_1.PacketScoreboardScore.Type.SOUND) {
-                // FORWARD TO EVERYONE IF IT IS SOUND PACKET (MAY CHANGE LATER)
-                thisclient.server.clientHandlers.forEach(function (client) {
+                // FORWARD SOUND PACKET TO EVERYONE EXCEPT SENDER
+                _this.server.clientHandlers.forEach(function (client) {
                     if (client.sio.connected
-                        && client != thisclient
-                        && client.boardinfo.accessKey === thisclient.boardinfo.accessKey) {
-                        client.sio.emit(Packets_1.Packet.Channels.Score, msg);
+                        && client != _this
+                        && client.boardinfo.accessKey === _this.boardinfo.accessKey) {
+                        client.send(Packets_1.Packet.Channels.Score, msg);
                     }
                 });
             }
-            else if (thisclient.type === ClientType.SCOREBOARD) {
-                //FORWARD MESSAGES
-                thisclient.server.clientHandlers.forEach(function (client) {
+            else if (_this.type === ClientType.SCOREBOARD) {
+                //FORWARD MESSAGES FROM SCOREBOARD TO CLIENT
+                _this.server.clientHandlers.forEach(function (client) {
                     if (client.sio.connected
                         && client.type !== ClientType.SCOREBOARD
-                        && client.boardinfo.accessKey === thisclient.boardinfo.accessKey) {
-                        client.sio.emit(Packets_1.Packet.Channels.Score, msg);
+                        && client.boardinfo.accessKey === _this.boardinfo.accessKey) {
+                        client.send(Packets_1.Packet.Channels.Score, msg);
                     }
                 });
             }
             else {
                 // FORWARD MESSAGE TO SCOREBOARD IF SCOREBOARD ONLINE
-                var target = thisclient.getBoardHolder();
+                var target = _this.getBoardHolder();
                 if (target != null)
-                    target.sio.emit(Packets_1.Packet.Channels.Score, msg);
+                    target.send(Packets_1.Packet.Channels.Score, msg);
             }
         });
     }
+    ClientHandler.prototype.getSummary = function () {
+        return {
+            id: this.id,
+            ip: this.getIP(),
+            type: this.type,
+            typeString: ClientType[this.type].toString()
+        };
+    };
     ClientHandler.prototype.isAlive = function () {
         return this.sio.connected;
     };
@@ -87,16 +110,17 @@ var ClientHandler = /** @class */ (function () {
         return this.sio.handshake.address;
     };
     ClientHandler.prototype.useScoreboard = function (key) {
-        // For remote to link to scoreboard
-        if (this.server.getBoardClient(key) == null)
-            return false;
         this.boardinfo.accessKey = key;
-        return true;
+        this.server.broadcastConnectionUpdate(this, Packets_1.NetworkUpdateType.JOIN);
     };
     ClientHandler.prototype.getBoardHolder = function () {
         // For remote to get scoreboard's client handler
         return this.server.getBoardClient(this.boardinfo.accessKey);
     };
+    ClientHandler.prototype.send = function (channel, data) {
+        this.sio.emit(channel, data);
+    };
+    ClientHandler.nextClientID = 1; //What ID will given to next connected client
     return ClientHandler;
 }());
 exports.ClientHandler = ClientHandler;

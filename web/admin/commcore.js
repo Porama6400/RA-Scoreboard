@@ -1,7 +1,10 @@
 var server_addr = "wss://www.otlg.net:6440";
+//var server_addr = "ws://localhost:6440";
+
 var socket = io(server_addr);
 
 var registerProtocol = 10; //DEFAULT as 10 (REMOTE) can be other as well such as
+var clientID = -1;
 
 //System variables
 var accessKey = undefined;
@@ -34,7 +37,17 @@ function pushScoreboard(data) {
         req: 10,
         payload: data
     });
+
+
 }
+
+function _welcomeHandler(data) {
+    if (data.req === 0) {
+        clientID = data.payload.id;
+    }
+}
+
+socket.on("sbr", _welcomeHandler);
 
 function playSound(name) {
     socket.emit("sbs", {

@@ -1,4 +1,6 @@
 var server_addr = "wss://www.otlg.net:6440";
+//var server_addr = "ws://localhost:6440";
+
 var socket = io(server_addr);
 var accessKey = undefined;
 

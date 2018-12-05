@@ -5,6 +5,7 @@ var https = require("https");
 var express = require("express");
 var SocketIO = require("socket.io");
 var ClientHandler_1 = require("./ClientHandler");
+var Packets_1 = require("./Packets");
 var app = express();
 var Server = /** @class */ (function () {
     function Server(port, privkeypath, certpath) {
@@ -12,29 +13,38 @@ var Server = /** @class */ (function () {
         this.clientHandlers = [];
         this.onConnection = function (conn) {
             var client = new ClientHandler_1.ClientHandler(_this, conn);
-            console.log("New connection from " + client.getIP());
+            console.log("New connection from " + client.getIP() + " as client " + client.id);
             _this.clientHandlers.push(client);
-            client.sio.on('management', function (data) {
-                console.log(data);
+            // Send welcome packet
+            var packetWelcome = new Packets_1.PacketScoreboardRegistry();
+            packetWelcome.req = Packets_1.PacketScoreboardRegistry.Type.WELCOME;
+            packetWelcome.payload = { id: client.id };
+            client.send(Packets_1.Packet.Channels.Registry, packetWelcome);
+            client.sio.on('disconnect', function () {
+                _this.removeClient(client);
             });
+        };
+        this.removeClient = function (client) {
+            if (client.sio.connected) {
+                client.sio.disconnect(0);
+            }
+            var index = _this.clientHandlers.indexOf(client);
+            _this.clientHandlers.splice(index, 1);
+            _this.broadcastConnectionUpdate(client, Packets_1.NetworkUpdateType.LEAVE);
+            console.log("Client " + client.id + " at " + client.getIP() + " disconnected!");
         };
         this.purgeConnections = function () {
             var purge = [];
             var thisserver = _this;
             _this.clientHandlers.forEach(function (client) {
-                if (!client.isAlive()) {
+                if (!client.isAlive() || client.pingIntegrity <= 0) {
                     purge.push(client);
-                    console.log("Client at " + client.getIP() + " disconnected!");
                     return;
                 }
             });
             purge.forEach(function (client) {
-                var index = thisserver.clientHandlers.indexOf(client);
-                thisserver.clientHandlers.splice(index, 1);
+                thisserver.removeClient(client);
             });
-        };
-        this.tick = function () {
-            _this.purgeConnections();
         };
         var thisserver = this;
         console.log("Server initializing...");
@@ -53,10 +63,19 @@ var Server = /** @class */ (function () {
         //Handle connection
         this.sockio.on('connection', this.onConnection);
         //Initialize server ticking
-        setInterval(this.tick, 1000);
+        setInterval(this.purgeConnections, 60000);
         console.log("Server listening on port " + port);
     }
     ;
+    Server.prototype.getConnectionSummary = function (accessKey) {
+        var dataout = {};
+        this.clientHandlers.forEach(function (client) {
+            if (client.boardinfo.accessKey === accessKey) {
+                dataout[client.id] = client.getSummary();
+            }
+        });
+        return dataout;
+    };
     Server.prototype.getBoardClient = function (key) {
         var ret = null;
         this.clientHandlers.forEach(function (client) {
@@ -66,6 +85,21 @@ var Server = /** @class */ (function () {
             }
         });
         return ret;
+    };
+    Server.prototype.broadcastConnectionUpdate = function (triggerClient, eventType) {
+        this.clientHandlers.forEach(function (client) {
+            if (client.sio.connected
+                && client !== triggerClient
+                && client.boardinfo.accessKey === triggerClient.boardinfo.accessKey) {
+                var packetOut = new Packets_1.PacketScoreboardRegistry();
+                packetOut.req = Packets_1.PacketScoreboardRegistry.Type.NETWORK_UPDATE;
+                packetOut.payload = {
+                    type: eventType,
+                    client: triggerClient.getSummary()
+                };
+                client.send(Packets_1.Packet.Channels.Registry, packetOut);
+            }
+        });
     };
     return Server;
 }());

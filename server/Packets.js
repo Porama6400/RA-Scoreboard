@@ -23,17 +23,29 @@ var Packet = /** @class */ (function () {
     return Packet;
 }());
 exports.Packet = Packet;
+var NetworkUpdateType = /** @class */ (function () {
+    function NetworkUpdateType() {
+    }
+    NetworkUpdateType.JOIN = "join";
+    NetworkUpdateType.LEAVE = "leave";
+    return NetworkUpdateType;
+}());
+exports.NetworkUpdateType = NetworkUpdateType;
 var PacketScoreboardRegistry = /** @class */ (function (_super) {
     __extends(PacketScoreboardRegistry, _super);
     function PacketScoreboardRegistry() {
         return _super.call(this) || this;
     }
     PacketScoreboardRegistry.Type = {
+        WELCOME: 0,
         REGISTER: 1,
         ACKNOWLEDGE: 2,
         MIRROR_REQUEST: 3,
         SOUND_REQUEST: 4,
-        USE: 10 // SPECIFIED WHAT SCOREBOARD TO REMOTE TO
+        SYSMONITOR: 5,
+        USE: 10,
+        NETWORK_LIST: 20,
+        NETWORK_UPDATE: 21,
     };
     return PacketScoreboardRegistry;
 }(Packet));
@@ -51,7 +63,7 @@ var PacketScoreboardScore = /** @class */ (function (_super) {
         TIMER_SET: 21,
         TIMER_PAUSE: 22,
         TIMER_END_ANNOUNCE: 23,
-        SOUND: 30
+        SOUND: 30 // REQUEST SOUND PLAYING
     };
     return PacketScoreboardScore;
 }(Packet));

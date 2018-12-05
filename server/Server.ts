@@ -3,6 +3,7 @@ import * as https from "https";
 import * as express from "express";
 import * as SocketIO from "socket.io";
 import {ClientHandler, ClientType} from "./ClientHandler";
+import {NetworkUpdateType, Packet, PacketScoreboardRegistry} from "./Packets";
 
 const app = express();
 
@@ -33,20 +34,35 @@ export class Server {
         this.sockio.on('connection', this.onConnection);
 
         //Initialize server ticking
-        setInterval(this.tick, 1000);
+        setInterval(this.purgeConnections, 60000);
 
         console.log("Server listening on port " + port);
     };
 
     private onConnection = (conn: SocketIO) => {
         let client: ClientHandler = new ClientHandler(this, conn);
-        console.log("New connection from " + client.getIP());
+        console.log("New connection from " + client.getIP() + " as client " + client.id);
         this.clientHandlers.push(client);
 
-        client.sio.on('management', function (data) {
-            console.log(data);
-        })
+        // Send welcome packet
+        var packetWelcome = new PacketScoreboardRegistry();
+        packetWelcome.req = PacketScoreboardRegistry.Type.WELCOME;
+        packetWelcome.payload = {id: client.id};
+        client.send(Packet.Channels.Registry, packetWelcome);
 
+        client.sio.on('disconnect', () => {
+            this.removeClient(client);
+        });
+    };
+
+    public removeClient = (client: ClientHandler) => {
+        if (client.sio.connected) {
+            client.sio.disconnect(0);
+        }
+        let index: number = this.clientHandlers.indexOf(client);
+        this.clientHandlers.splice(index, 1);
+        this.broadcastConnectionUpdate(client, NetworkUpdateType.LEAVE);
+        console.log("Client " + client.id + " at " + client.getIP() + " disconnected!");
     };
 
     public purgeConnections = (): void => {
@@ -54,22 +70,27 @@ export class Server {
         const thisserver = this;
 
         this.clientHandlers.forEach(function (client) {
-            if (!client.isAlive()) {
+            if (!client.isAlive() || client.pingIntegrity <= 0) {
                 purge.push(client);
-                console.log("Client at " + client.getIP() + " disconnected!");
                 return;
             }
         });
 
         purge.forEach(function (client) {
-            let index: number = thisserver.clientHandlers.indexOf(client);
-            thisserver.clientHandlers.splice(index, 1);
+            thisserver.removeClient(client);
         })
     };
 
-    public tick = (): void => {
-        this.purgeConnections();
-    };
+    public getConnectionSummary(accessKey: string) {
+        var dataout = {};
+        this.clientHandlers.forEach((client) => {
+            if (client.boardinfo.accessKey === accessKey) {
+                dataout[client.id] = client.getSummary();
+            }
+        });
+        return dataout;
+    }
+
 
     public getBoardClient(key: string) {
         var ret: any = null;
@@ -79,5 +100,23 @@ export class Server {
             }
         });
         return ret;
+    }
+
+    public broadcastConnectionUpdate(triggerClient: ClientHandler, eventType: NetworkUpdateType) {
+        this.clientHandlers.forEach((client) => {
+            if (client.sio.connected
+                && client !== triggerClient
+                && client.boardinfo.accessKey === triggerClient.boardinfo.accessKey) {
+
+                var packetOut = new PacketScoreboardRegistry();
+                packetOut.req = PacketScoreboardRegistry.Type.NETWORK_UPDATE;
+                packetOut.payload = {
+                    type: eventType,
+                    client: triggerClient.getSummary()
+                };
+
+                client.send(Packet.Channels.Registry, packetOut);
+            }
+        })
     }
 }
