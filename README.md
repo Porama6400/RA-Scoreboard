@@ -9,7 +9,7 @@
 ```
 npm install
 ```
-### 2. Run Node.js server (Node.js need to be installed)
+### 2. Run Node.js server (Node.js needs to be installed)
 ```
 cd server 
 node main.js
