@@ -7,8 +7,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <img id="team-1-logo" className="logo" src="#"></img>
-        <img id="team-2-logo" className="logo" src="#"></img>
+        <img id="team-1-logo" className="logo" alt="blueleft" src="/assets/Blue-left.jpg"></img>
+        <img id="team-2-logo" className="logo" alt="blueright" src="/assets/Blue-right.jpg"></img>
         <div id="timer" className="timer">00.00</div>
         <table>
           <tbody>
