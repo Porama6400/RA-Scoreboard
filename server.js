@@ -16,7 +16,12 @@ const io = socketIO(server)
 // This is what the socket.io syntax is like, we will work this later
 io.on('connection', socket => {
     console.log('User connected')
-
+    //add color
+    socket.on('change color', function(color) {
+        console.log('Color Changed to: ', color)
+        io.sockets.emit('change color', color)
+    } )
+    //add color end
     socket.on('disconnect', () => {
         console.log('user disconnected')
     })
