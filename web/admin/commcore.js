@@ -1,7 +1,7 @@
 var server_addr = "wss://www.otlg.net:6440";
 //var server_addr = "ws://localhost:6440";
 
-var socket = io(server_addr);
+var socket = io.connect(server_addr, { secure: true, rejectUnauthorized: false });
 
 var registerProtocol = 10; //DEFAULT as 10 (REMOTE) can be other as well such as
 var clientID = -1;
