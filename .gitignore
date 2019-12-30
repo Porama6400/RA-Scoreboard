@@ -108,3 +108,4 @@ fabric.properties
 # End of https://www.gitignore.io/api/git,webstorm
 
 node_modules/
+.DS_Store
