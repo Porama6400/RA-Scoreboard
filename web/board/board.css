@@ -58,16 +58,15 @@ body {
 
 .timer {
   position: fixed;
-  top: 40%;
-  left: 55%;
-  width: 30vw;
+  top: 50%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  min-width: 30vw;
   font-family: "Oswald", sans-serif;
-  font-size: 11rem;
+  font-size: 9rem;
 }
 
 #timer {
-  transform: translate(-50%, -45vh);
-  font-size: 11rem;
   color: gray;
 }
 
@@ -94,7 +93,7 @@ body {
   font-family: "Oswald", sans-serif;
   font-size: 5rem;
   transform: translateY(1rem);
-  color: gray;
+  color:#fff;
   user-select: none;
 }
 
@@ -109,4 +108,20 @@ body {
   width: 150px;
 }
 
+#team_a_score {
+  padding-right: 12%
+}
+
+#team_b_score {
+  padding-left: 12%
+}
+
+team-a-cval {
+  margin-right: 60%
+}
+
+
+team-b-cval {
+  margin-left: 60%
+}
 /*# sourceMappingURL=board.css.map */
