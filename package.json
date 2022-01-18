@@ -1,10 +1,13 @@
 {
-  "name": "ScoreboardServer",
+  "name": "scoreboard_server",
   "version": "1.0.0",
   "dependencies": {
-    "socket.io": "latest"
+    "express": "latest",
+    "socket.io": "^4.4.1"
   },
   "devDependencies": {
-    "@types/node": "^10.12.10"
+    "@types/node": "^10.17.60",
+    "@types/express": "^4.17.13",
+    "@types/socket.io": "^3.0.2"
   }
 }

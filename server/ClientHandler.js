@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ClientHandler = exports.ClientType = void 0;
 var Packets_1 = require("./Packets");
 var Utils_1 = require("./Utils");
 var BoardInfo_1 = require("./BoardInfo");

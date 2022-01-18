@@ -1,58 +1,42 @@
 import * as fs from "fs";
-import * as https from "https";
-import * as express from "express";
-import * as SocketIO from "socket.io";
+import {Server as SocketServer, Socket} from "socket.io";
 import {ClientHandler, ClientType} from "./ClientHandler";
 import {NetworkUpdateType, Packet, PacketScoreboardRegistry} from "./Packets";
-
-const app = express();
+import {createServer} from "https";
 
 export class Server {
 
     public clientHandlers: Array<ClientHandler> = [];
 
-    public sockio: SocketIO;
+    public socketServer: SocketServer;
 
     constructor(port: number, privkeypath: string, certpath: string) {
-        const thisserver = this;
         console.log("Server initializing...");
 
         //Initialize Socket.io
-        if (certpath === null || certpath === undefined || privkeypath === null || certpath === undefined) {
-            this.sockio = new SocketIO(port);
-        }
-        else {
-            var server = https.createServer({
+        if (certpath === null || certpath === undefined || privkeypath === null || privkeypath === undefined) {
+            this.socketServer = new SocketServer(port);
+        } else {
+            let server = createServer({
                 key: fs.readFileSync(privkeypath),
                 cert: fs.readFileSync(certpath)
-            }, app);
+            });
+
+            this.socketServer = new SocketServer(server, {
+                cors: {
+                    origin: "*"
+                }
+            });
             server.listen(port);
-            this.sockio = SocketIO.listen(server);
         }
 
         //Handle connection
-        this.sockio.on('connection', this.onConnection);
+        this.socketServer.on('connection', this.onConnection);
 
         //Initialize server ticking
         setInterval(this.purgeConnections, 60000);
 
         console.log("Server listening on port " + port);
-    };
-
-    private onConnection = (conn: SocketIO) => {
-        let client: ClientHandler = new ClientHandler(this, conn);
-        console.log("New connection from " + client.getIP() + " as client " + client.id);
-        this.clientHandlers.push(client);
-
-        // Send welcome packet
-        var packetWelcome = new PacketScoreboardRegistry();
-        packetWelcome.req = PacketScoreboardRegistry.Type.WELCOME;
-        packetWelcome.payload = {id: client.id};
-        client.send(Packet.Channels.Registry, packetWelcome);
-
-        client.sio.on('disconnect', () => {
-            this.removeClient(client);
-        });
     };
 
     public removeClient = (client: ClientHandler) => {
@@ -91,7 +75,6 @@ export class Server {
         return dataout;
     }
 
-
     public getBoardClient(key: string) {
         var ret: any = null;
         this.clientHandlers.forEach((client) => {
@@ -119,4 +102,20 @@ export class Server {
             }
         })
     }
+
+    private onConnection = (conn: Socket) => {
+        let client: ClientHandler = new ClientHandler(this, conn);
+        console.log("New connection from " + client.getIP() + " as client " + client.id);
+        this.clientHandlers.push(client);
+
+        // Send welcome packet
+        var packetWelcome = new PacketScoreboardRegistry();
+        packetWelcome.req = PacketScoreboardRegistry.Type.WELCOME;
+        packetWelcome.payload = {id: client.id};
+        client.send(Packet.Channels.Registry, packetWelcome);
+
+        client.sio.on('disconnect', () => {
+            this.removeClient(client);
+        });
+    };
 }
